@@ -89,9 +89,9 @@ public class ReservationDAO {
 	 */
 	public int update(int boardId) throws SQLException {
 		try {		
-			String sql  = "SELECT ReservationId "
-					+ "FROM Reservation "
-					+ "WHERE BoardId= ? ";
+			String sql  = "SELECT RESERVATIONID "
+					+ "FROM RESERVATION "
+					+ "WHERE BOARDID= ? ";
 			jdbcUtil.setSqlAndParameters(sql,  new Object[] {boardId});
 			ResultSet result = jdbcUtil.executeQuery();
 			while (result.next()) {
@@ -100,9 +100,9 @@ public class ReservationDAO {
 					);
 			}
 			// 보드ID를 통해 reservationId를 얻어오고
-			String sql2 = "UPDATE Reservation "
-						+ "SET State= ? "
-						+ "WHERE ReservationId= ? ";
+			String sql2 = "UPDATE RESERVATION "
+						+ "SET STATE= ? "
+						+ "WHERE RESERVATIONID= ? ";
 			Object[] param = new Object[] {3 , new Object[] {result}};				
 			jdbcUtil.setSqlAndParameters(sql2, param);
 			int result2 = jdbcUtil.executeUpdate();
@@ -124,7 +124,7 @@ public class ReservationDAO {
 	 * + 추가로 보드의 이용자수도 줄이기 기능 추가
 	 */
 	public int remove(int reservationId) throws SQLException {
-		String sql = "DELETE FROM reservation WHERE reservationId=? ";		
+		String sql = "DELETE FROM RESERVATION WHERE RESERVATIONID=? ";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {reservationId});	// JDBCUtil에 delete문과 매개 변수 설정
 
 		try {				
