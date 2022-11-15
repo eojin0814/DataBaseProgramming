@@ -66,7 +66,8 @@ public class ReservationDAO {
 					rs.getString("DEPARTURETIME"),
 					rs.getString("ARRIVALTIME"),
 					rs.getString("DEPARTURE"),
-					rs.getInt("STATE")
+					rs.getInt("STATE"),
+					rs.getInt("RESERVATIONID")
 					);
 				myReservation.add(reservation);				
 			}		
@@ -81,45 +82,25 @@ public class ReservationDAO {
 	}
 
 	/**
-	 * 기존의 커뮤니티 정보를 수정
+	 * 예약확정
+	 * + 보드에 이용자 업데이트
 	 */
-	public int update(Community comm) throws SQLException {
-		String sql = "UPDATE Community "
-					+ "SET cName=?, descr=?, chairId=? "
-					+ "WHERE cId=?";
-		String chairId = comm.getChairId();
-		if (chairId.equals("")) chairId = null;
-		Object[] param = new Object[] {comm.getName(), comm.getDescription(),
-				chairId, comm.getId()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
-			
-		try {				
-			int result = jdbcUtil.executeUpdate();	// update 문 실행
-			return result;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		}
-		finally {
-			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
-		}		
-		return 0;
-	}
-
-	/**
-	 * 커뮤니티의 회장을 변경  
-	 */
-	public int updateChair(Community comm) {
-		String sql = "UPDATE Community "
-					+ "SET chairId= ? "
-					+ "WHERE cId=?";
-		Object[] param = new Object[] {comm.getChairId(), comm.getId()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
-			
-		try {				
-			int result = jdbcUtil.executeUpdate();	// update 문 실행
-			return result;
+	public int update(int boardId) throws SQLException {
+		try {		
+			String sql  = "reservation_Id "
+					+ "FROM reservation "
+					+ "WHERE board_Id= ? ";
+			jdbcUtil.setSqlAndParameters(sql,  new Object[] {boardId});
+			int result = jdbcUtil.executeUpdate();
+			// 보드ID를 통해 reservationId를 얻어오고
+			String sql2 = "UPDATE reservation "
+						+ "SET state= ? "
+						+ "WHERE reservation_Id= ? ";
+			Object[] param = new Object[] {1 , new Object[] {result}};				
+			jdbcUtil.setSqlAndParameters(sql, param);
+			int result2 = jdbcUtil.executeUpdate();
+			return result2;
+			//reservationId를 통해 state 값을 변경
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -132,11 +113,12 @@ public class ReservationDAO {
 	}
 	
 	/**
-	 * 주어진 ID에 해당하는 커뮤니티 정보를 삭제.
+	 * 주어진 reservationID에 해당하는 유저의 예약 삭제 
+	 * + 추가로 보드의 이용자수도 줄이기 기능 추가
 	 */
-	public int remove(String commId) throws SQLException {
-		String sql = "DELETE FROM Community WHERE cId=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {commId});	// JDBCUtil에 delete문과 매개 변수 설정
+	public int remove(int reservationId) throws SQLException {
+		String sql = "DELETE FROM reservation WHERE reservation_Id=? ";		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {reservationId});	// JDBCUtil에 delete문과 매개 변수 설정
 
 		try {				
 			int result = jdbcUtil.executeUpdate();	// delete 문 실행
@@ -152,84 +134,5 @@ public class ReservationDAO {
 		return 0;
 	}
 
-	/**
-	 * 주어진  ID에 해당하는 커뮤니티 정보를 데이터베이스에서 찾아 Community 도메인 클래스에 
-	 * 저장하여 반환.
-	 */
-	public Community findCommunity(int commId) throws SQLException {
-        String sql = "SELECT cName, descr, startDate, chairId, u.name As chairName "
-        			+ "FROM Community c LEFT OUTER JOIN UserInfo u ON c.chairId = u.userId "
-        			+ "WHERE cId=? ";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {commId});	// JDBCUtil에 query문과 매개 변수 설정
-		Community comm = null;
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-			if (rs.next()) {						// 학생 정보 발견
-				comm = new Community(		// Community 객체를 생성하여 커뮤니티 정보를 저장
-					commId,
-					rs.getString("cName"),
-					rs.getString("descr"),
-					rs.getDate("startDate"),
-					rs.getString("chairId"),
-					rs.getString("chairName"));
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();		// resource 반환
-		}
-		return comm;
-	}
-
-	/**
-	 * 전체 커뮤니티 정보를 검색하여 List에 저장 및 반환
-	 */
-	public List<Community> findCommunityList() throws SQLException {
-        String sql = "SELECT cId, cName, descr, COUNT(u.userId) AS numOfMem "
-        		   + "FROM Community c LEFT OUTER JOIN UserInfo u ON c.cId = u.commId "
-        		   + "GROUP BY cId, cName, descr "
-        		   + "ORDER BY cName";        
-		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
-					
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-			List<Community> commList = new ArrayList<Community>();	// Community들의 리스트 생성
-			while (rs.next()) {
-				Community comm = new Community(			// Community 객체를 생성하여 현재 행의 정보를 저장
-						rs.getInt("cId"),
-						rs.getString("cName"),
-						rs.getString("descr"),
-						rs.getInt("numOfMem"));
-				commList.add(comm);				// List에 Community 객체 저장
-			}		
-			return commList;					
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();		// resource 반환
-		}
-		return null;
-	}
 	
-	/**
-	 * 주어진  ID에 해당하는 커뮤니티가 존재하는지 검사 
-	 */
-	public boolean existingCommunity(String commId) throws SQLException {
-		String sql = "SELECT count(*) FROM Community WHERE cId=?";      
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {commId});	// JDBCUtil에 query문과 매개 변수 설정
-
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-			if (rs.next()) {
-				int count = rs.getInt(1);
-				return (count == 1 ? true : false);
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();		// resource 반환
-		}
-		return false;
-	}
 }
