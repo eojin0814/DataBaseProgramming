@@ -7,9 +7,10 @@ public class ReservationDTO {
 	private String arrivalTime;
 	private String departureTime;
 	private int state;
+	private int reservationId;
 	
 	public ReservationDTO(int driverId, String arrival, String departure, String arrivalTime, String departureTime,
-			int state) {
+			int state, int resetvationId) {
 		super();
 		this.driverId = driverId;
 		this.arrival = arrival;
@@ -17,6 +18,7 @@ public class ReservationDTO {
 		this.arrivalTime = arrivalTime;
 		this.departureTime = departureTime;
 		this.state = state;
+		this.reservationId = resetvationId;
 	}
 	
 	public int getDriverId() {
@@ -46,6 +48,7 @@ public class ReservationDTO {
 	public String getDepartureTime() {
 		return departureTime;
 	}
+
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
@@ -54,5 +57,13 @@ public class ReservationDTO {
 	}
 	public void setState(int state) {
 		this.state = state;
+	}
+	
+	public int getReservationId() {
+		return reservationId;
+	}
+
+	public void setReservationId(int reservationId) {
+		this.reservationId = reservationId;
 	}
 }
