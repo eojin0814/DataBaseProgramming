@@ -27,8 +27,8 @@ public class ReservationDAO {
 		//state - 1 : 예약 안한 상태, state -  2 : 예약 대기 상태, state - 3:예약 수락 상태
 		//신청시 실행되는 dao -> create<reservation 테이블 생성>
 	public void create(int boardId, CustomerDTO customer) throws SQLException {
-		String sql = "INSERT INTO RESERVATION VALUES (?, ?, ?)";		
-		Object[] param = new Object[] {customer.getId(), 2, boardId};				
+		String sql = "INSERT INTO RESERVATION VALUES (?, ?, ?, ?)";		
+		Object[] param = new Object[] {"RESERVATIONID_SEQUENCE.NEXTVAL", customer.getId(), 2, boardId};				
 		jdbcUtil.setSqlAndParameters(sql, param);
 			
 		try {				
