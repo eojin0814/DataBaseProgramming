@@ -83,6 +83,7 @@ public class ReservationDAO {
 
 	/**
 	 * 예약확정
+	 * + 보드에 이용자 업데이트
 	 */
 	public int update(int boardId) throws SQLException {
 		try {		
@@ -97,7 +98,8 @@ public class ReservationDAO {
 						+ "WHERE reservation_Id= ? ";
 			Object[] param = new Object[] {1 , new Object[] {result}};				
 			jdbcUtil.setSqlAndParameters(sql, param);
-			jdbcUtil.executeUpdate();		
+			int result2 = jdbcUtil.executeUpdate();
+			return result2;
 			//reservationId를 통해 state 값을 변경
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
