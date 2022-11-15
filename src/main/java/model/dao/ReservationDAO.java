@@ -7,6 +7,7 @@ import java.util.List;
 
 import model.Community;
 import model.CustomerDTO;
+import model.Reservation;
 import model.ReservationDTO;
 
 /**
@@ -84,20 +85,26 @@ public class ReservationDAO {
 	/**
 	 * 예약확정
 	 * + 보드에 이용자 업데이트
+	 * insert carshare 
 	 */
 	public int update(int boardId) throws SQLException {
 		try {		
-			String sql  = "reservation_Id "
-					+ "FROM reservation "
-					+ "WHERE board_Id= ? ";
+			String sql  = "SELECT ReservationId "
+					+ "FROM Reservation "
+					+ "WHERE BoardId= ? ";
 			jdbcUtil.setSqlAndParameters(sql,  new Object[] {boardId});
-			int result = jdbcUtil.executeUpdate();
+			ResultSet result = jdbcUtil.executeQuery();
+			while (result.next()) {
+				Reservation reservation = new Reservation(			
+						result.getInt("RESERVATIONID")
+					);
+			}
 			// 보드ID를 통해 reservationId를 얻어오고
-			String sql2 = "UPDATE reservation "
-						+ "SET state= ? "
-						+ "WHERE reservation_Id= ? ";
-			Object[] param = new Object[] {1 , new Object[] {result}};				
-			jdbcUtil.setSqlAndParameters(sql, param);
+			String sql2 = "UPDATE Reservation "
+						+ "SET State= ? "
+						+ "WHERE ReservationId= ? ";
+			Object[] param = new Object[] {3 , new Object[] {result}};				
+			jdbcUtil.setSqlAndParameters(sql2, param);
 			int result2 = jdbcUtil.executeUpdate();
 			return result2;
 			//reservationId를 통해 state 값을 변경
@@ -117,7 +124,7 @@ public class ReservationDAO {
 	 * + 추가로 보드의 이용자수도 줄이기 기능 추가
 	 */
 	public int remove(int reservationId) throws SQLException {
-		String sql = "DELETE FROM reservation WHERE reservation_Id=? ";		
+		String sql = "DELETE FROM reservation WHERE reservationId=? ";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {reservationId});	// JDBCUtil에 delete문과 매개 변수 설정
 
 		try {				
