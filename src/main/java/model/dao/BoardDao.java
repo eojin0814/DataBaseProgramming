@@ -3,7 +3,7 @@ package model.dao;
 import java.sql.SQLException;
 
 import model.CustomerDTO;
-import model.service.BoardDTO;
+import model.BoardDTO;
 
 public class BoardDao {
 	
