@@ -18,7 +18,7 @@ public class CustomerDTO {
 	      this.gender = gender;
 	      this.job = job;
 	      this.age = age;
-	  }
+	   }
 	
 	public CustomerDTO(int id, String name, int gender, int age, String job, String phone) {
 		super();
@@ -45,7 +45,7 @@ public class CustomerDTO {
 	public int getGender() {
 		return gender;
 	}
-	public void setGender (int gender) {
+	public void setGentder(int gender) {
 		this.gender = gender;
 	}
 	public int getAge() {

@@ -86,6 +86,7 @@ public class ReservationDAO {
 	 * 예약확정
 	 * + 보드에 이용자 업데이트
 	 * insert carshare 
+	 * 클릭한 board의 board id 가져와서 대기상태로 reservation 테이블 변경
 	 */
 	public int update(int boardId) throws SQLException {
 		try {		

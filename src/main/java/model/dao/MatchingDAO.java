@@ -55,67 +55,64 @@ private JDBCUtil jdbcUtil = null;
 		return null;   
 	   } 
 	public List<CustomerDTO> proBaseMatching(ReservationDTO reservation, BoardDTO board, CustomerDTO customer, int customId) {//job, gender, age기반 추천매칭
-	    CustomerDTO cus = null;
-	    CustomerDTO cusFinal;
-	    List<CustomerDTO> cusList;
-	    String sql = "SELECT gender, job, age "
-	          + "FROM CUSTOMER "
-	           + "WHERE CUSTOMERID = ?";
-	    
-	    jdbcUtil.setSqlAndParameters(sql, new Object[]{customId});  // JDBCUtil 에 query 및 파라미터 설정
-	    
-	    try {      
-	        ResultSet rs = jdbcUtil.executeQuery();
-	
-	//          List<CustomerDTO> cusList = new ArrayList<CustomerDTO>();   // 리스트 생성
-	          while (rs.next()) {   // 커서를 통해 한 행씩 fetch
-	
-	          cus = new CustomerDTO(  // Employee 객체를 생성하고 생성자를 통해 컬럼 값 저장
-	                rs.getInt("id"),
-	                rs.getString("name"),
-	                rs.getInt("gender"),
-	                rs.getInt("age"),
-	                rs.getString("job"),
-	                rs.getString("phone"));
-	          }
-	      } catch (Exception ex) {
-	          ex.printStackTrace();
-	      } finally {
-	          jdbcUtil.close();    // ResultSet, PreparedStatement, Connection 반환
-	      }
-	    
-	    int age = cus.getAge();
-	    int gender = cus.getGender();
-	    String job = cus.getJob();
-	    
-	    String sql2 = "SELECT gender, job, age "
-	          + "FROM CUSTOMER "
-	          + "WHERE gender = ?, job = ?, age = ?";
-	    
-	    jdbcUtil.setSqlAndParameters(sql2, new Object[]{gender, job, age});  // JDBCUtil 에 query 및 파라미터 설
-	    
-	    try { 
-	          ResultSet rs = jdbcUtil.executeQuery();  
-	          cusList = new ArrayList<CustomerDTO>(); 
-	          while (rs.next()) {   // 커서를 통해 한 행씩 fetch
-	             cusFinal = new CustomerDTO(  // Employee 객체를 생성하고 생성자를 통해 컬럼 값 저장
-	                   rs.getInt("id"),
-	                   rs.getString("name"),
-	                   rs.getInt("gender"),
-	                   rs.getInt("age"),
-	                   rs.getString("job"),
-	                   rs.getString("phone"));
-	             cusList.add(cusFinal);
-	             
-	             }
-	         } catch (Exception ex) {
-	             ex.printStackTrace();
-	         } finally {
-	             jdbcUtil.close();    // ResultSet, PreparedStatement, Connection 반환
-	         }
-	    return cusList;
-	     
-	 }
+        CustomerDTO cus = null;
+        CustomerDTO cusFinal;
+        List<CustomerDTO> cusList = null;
+        String sql = "SELECT gender, job, age "
+              + "FROM CUSTOMER "
+               + "WHERE CUSTOMERID = ?";
+        
+        jdbcUtil.setSqlAndParameters(sql, new Object[]{customId});  // JDBCUtil 에 query 및 파라미터 설정
+        
+        try {      
+            ResultSet rs = jdbcUtil.executeQuery();
+
+//              List<CustomerDTO> cusList = new ArrayList<CustomerDTO>();   // 리스트 생성
+              while (rs.next()) {   // 커서를 통해 한 행씩 fetch
+
+              cus = new CustomerDTO(  // Employee 객체를 생성하고 생성자를 통해 컬럼 값 저장
+                    rs.getInt("gender"),
+                    rs.getString("job"),
+                    rs.getInt("age"));
+              }
+          } catch (Exception ex) {
+              ex.printStackTrace();
+          } finally {
+              jdbcUtil.close();    // ResultSet, PreparedStatement, Connection 반환
+          }
+        
+        int age = cus.getAge();
+        int gender = cus.getGender();
+        String job = cus.getJob();
+        
+        String sql2 = "SELECT gender, job, age "
+              + "FROM CUSTOMER "
+              + "WHERE gender = ?, job = ?, age = ?";
+        
+        jdbcUtil.setSqlAndParameters(sql2, new Object[]{gender, job, age});  // JDBCUtil 에 query 및 파라미터 설
+        
+        try { 
+              ResultSet rs = jdbcUtil.executeQuery();  
+              cusList = new ArrayList<CustomerDTO>(); 
+              while (rs.next()) {   // 커서를 통해 한 행씩 fetch
+                 cusFinal = new CustomerDTO(  // Employee 객체를 생성하고 생성자를 통해 컬럼 값 저장
+                       rs.getInt("id"),
+                       rs.getString("name"),
+                       rs.getInt("gender"),
+                       rs.getInt("age"),
+                       rs.getString("job"),
+                       rs.getString("phone"));
+                 cusList.add(cusFinal);
+                 
+                 }
+             } catch (Exception ex) {
+                 ex.printStackTrace();
+             } finally {
+                 jdbcUtil.close();    // ResultSet, PreparedStatement, Connection 반환
+             }
+        return cusList;
+         
+     }
 		//운전자가 수락을 눌렀을 경우 carshare table만들고, reservation의 state값 변경해주는 dao
 		public void create(int carShareId, BoardDTO board, ReservationDTO reservation, StationDTO station) throws SQLException {
 		      String sql = "INSERT INTO CARSHARE VALUES (?, ?, ?, ?)";      
