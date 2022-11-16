@@ -72,8 +72,8 @@ private JDBCUtil jdbcUtil = null;
 
               cus = new CustomerDTO(  // Employee 객체를 생성하고 생성자를 통해 컬럼 값 저장
                     rs.getInt("gender"),
-                    rs.getString("job"),
-                    rs.getInt("age"));
+                    rs.getInt("age"),
+                    rs.getString("job"));
               }
           } catch (Exception ex) {
               ex.printStackTrace();

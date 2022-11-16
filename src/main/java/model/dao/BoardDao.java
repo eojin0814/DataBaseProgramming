@@ -9,7 +9,7 @@ import model.CustomerDTO;
 import model.Reservation;
 import model.ReservationDTO;
 import model.User;
-import model.service.BoardDTO;
+import model.BoardDTO;
 
 public class BoardDao {
 	

@@ -10,6 +10,19 @@ public class BoardDTO {
 	private String carShareDate;
 	private int headCount;
 
+	public BoardDTO(int driverId, int boardId, String arrival, String departure, String arrivalTime,
+			String departureTime, String carShareDate, int headCount) {
+		super();
+		this.driverId = driverId;
+		this.boardId = boardId;
+		this.arrival = arrival;
+		this.departure = departure;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+		this.carShareDate = carShareDate;
+		this.headCount = headCount;
+	}
+	
 	public int getDriverId() {
 		return driverId;
 	}

@@ -7,18 +7,24 @@ public class CustomerDTO {
 	
 	private int id;
 	private String name;
-	private int gentder;
+	private int gender;
 	private int age;
 	private String job;
 	private String phone;
 	private List<ReservationDTO> customerReservationInfo;
 	
+	public CustomerDTO(int gender, int age, String job) {
+		super();
+		this.gender = gender;
+		this.age = age;
+		this.job = job;
+	}
 	
-	public CustomerDTO(int id, String name, int gentder, int age, String job, String phone) {
+	public CustomerDTO(int id, String name, int gender, int age, String job, String phone) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.gentder = gentder;
+		this.gender = gender;
 		this.age = age;
 		this.job = job;
 		this.phone = phone;
@@ -36,11 +42,11 @@ public class CustomerDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getGentder() {
-		return gentder;
+	public int getGender() {
+		return gender;
 	}
-	public void setGentder(int gentder) {
-		this.gentder = gentder;
+	public void setGender(int gentder) {
+		this.gender = gender;
 	}
 	public int getAge() {
 		return age;
