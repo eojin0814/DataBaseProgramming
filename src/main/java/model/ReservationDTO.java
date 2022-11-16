@@ -9,6 +9,12 @@ public class ReservationDTO {
 	private int state;
 	private int reservationId;
 	
+	public ReservationDTO(int resetvationId) 
+	{
+		this.reservationId = resetvationId;
+	}
+	
+	
 	public ReservationDTO(int driverId, String arrival, String departure, String arrivalTime, String departureTime,
 			int state, int resetvationId) {
 		super();
