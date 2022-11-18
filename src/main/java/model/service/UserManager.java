@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Community;
+import model.CustomerDTO;
 import model.User;
 import model.dao.CommunityDAO;
+import model.dao.CustomerDAO;
 import model.dao.UserDAO;
 
 /**
@@ -20,12 +22,14 @@ public class UserManager {
 	private UserDAO userDAO;
 	private CommunityDAO commDAO;
 	private UserAnalysis userAanlysis;
+	private CustomerDAO customerDAO;
 
 	private UserManager() {
 		try {
 			userDAO = new UserDAO();
 			commDAO = new CommunityDAO();
 			userAanlysis = new UserAnalysis(userDAO);
+			customerDAO = new CustomerDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -33,6 +37,13 @@ public class UserManager {
 	
 	public static UserManager getInstance() {
 		return userMan;
+	}
+	
+	public void customerCreate(CustomerDTO customer) throws SQLException, ExistingUserException {
+//		if (userDAO.existingUser(user.getUserId()) == true) {
+//			throw new ExistingUserException(user.getUserId() + "는 존재하는 아이디입니다.");
+//		}
+		customerDAO.create(customer);
 	}
 	
 	public int create(User user) throws SQLException, ExistingUserException {

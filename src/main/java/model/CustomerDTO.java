@@ -11,8 +11,10 @@ public class CustomerDTO {
 	private int age;
 	private String job;
 	private String phone;
+	private String password;
 	private List<ReservationDTO> customerReservationInfo;
 	
+	//매칭을 위한 생성자
 	public CustomerDTO(int gender, int age, String job) {
 		super();
 		this.gender = gender;
@@ -20,6 +22,19 @@ public class CustomerDTO {
 		this.job = job;
 	}
 	
+	//password포함 생성자 - 보여주면 안되는 나의 정보
+	public CustomerDTO(int id, String name, int gender, int age, String job, String phone, String password) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+		this.job = job;
+		this.phone = phone;
+		this.password = password;
+	}
+	
+	//password제외한 생성자 - 보여줘도 되는 나의 정보
 	public CustomerDTO(int id, String name, int gender, int age, String job, String phone) {
 		super();
 		this.id = id;
@@ -30,6 +45,14 @@ public class CustomerDTO {
 		this.phone = phone;
 	}
 	
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public int getId() {
 		return id;
 	}
