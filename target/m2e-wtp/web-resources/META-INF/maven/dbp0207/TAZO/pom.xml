@@ -21,9 +21,22 @@
 		<jackson-databind.version>2.12.5</jackson-databind.version>
 		<junit.version>4.13.2</junit.version>
 		<oracle-jdbc-driver.version>21.3.0.0</oracle-jdbc-driver.version>
+		<mybatis.version>3.5.7</mybatis.version>
+		<commons-dbcp2.version>2.9.0</commons-dbcp2.version>
 	</properties>
 	
 	<dependencies>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>${commons-dbcp2.version}</version>
+		</dependency>
+		<!-- MyBatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
 		<!-- Servlet & JSP API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -55,6 +68,11 @@
 			<version>${commons-dbcp2.version}</version>
 		</dependency>
 
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.11.1</version>
+</dependency>
 		<!-- file upload API -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>

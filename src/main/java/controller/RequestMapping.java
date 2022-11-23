@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.user.*;
+import controller.board.*;
 import controller.comm.*;
 import controller.customer.CustomerLoginController;
 import controller.customer.RegisterCustomerController;
@@ -17,6 +18,12 @@ public class RequestMapping {
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
+    	
+    	//board
+    	mappings.put("/driver", new ListBoardController());
+    	mappings.put("/driver/list", new ForwardController("/driver/boardList.jsp"));
+    	mappings.put("/driver/register/board/form", new ForwardController("/driver/registerBoard.jsp"));
+    	mappings.put("/driver/register/board", new CreateBoardController());
     	
     	mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
     	mappings.put("/customer/login", new CustomerLoginController());

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!-- 현재 폴더 경로와 일치한다 -->
+<mapper namespace="repository.mybatis.mapper.BoardMapper">
+	<cache />
+
+	<sql id="BaseColumns">
+		DRIVERID AS driverId,
+		BOARDID AS boardID,
+		ARRIVAL AS arrival,
+		DEPARTURE AS departure,
+		ARRIVALTIME AS arrivalTime,
+		DEPARTURETIME AS departureTime,
+		CARSHARE_DATE AS carShareDate,	
+		HEADCOUNT AS headCount	
+	</sql>
+	
+	<select id="selectAllBoard" resultType="BoardDTO">
+		SELECT <include refid="BaseColumns"/>
+		FROM BOARD
+	</select>
+	
+	<select id="findBoardByBoardId" parameterType="int" resultType="BoardDTO">
+		SELECT <include refid="BaseColumns"/>
+		FROM BOARD
+		WHERE BOARDID = #{boardId}
+	</select>
+</mapper>

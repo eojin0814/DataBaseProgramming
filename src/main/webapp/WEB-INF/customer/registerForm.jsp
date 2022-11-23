@@ -9,7 +9,7 @@
 </head>
 <body>
 <form  method="POST" action="<c:url value='/customer/register' />">
-<input type="text" name="customerId" placeholder="id">
+<input type="text" name="driverId" placeholder="id">
 <input type="text" name="name" placeholder="name">
 <input type="text" name="gender" placeholder="gender">
 <input type="text" name="age" placeholder="age">

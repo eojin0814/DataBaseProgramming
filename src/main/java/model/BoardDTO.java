@@ -10,6 +10,19 @@ public class BoardDTO {
 	private String carShareDate;
 	private int headCount;
 
+	public BoardDTO(int driverId, String arrival, String departure, String arrivalTime, String departureTime,
+			String carShareDate, int headCount) {
+		super();
+		this.driverId = driverId;
+		this.arrival = arrival;
+		this.departure = departure;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+		this.carShareDate = carShareDate;
+		this.headCount = headCount;
+	}
+
+	
 	public BoardDTO(int driverId, int boardId, String arrival, String departure, String arrivalTime,
 			String departureTime, String carShareDate, int headCount) {
 		super();
@@ -70,5 +83,12 @@ public class BoardDTO {
 	}
 	public void setHeadCount(int headCount) {
 		this.headCount = headCount;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardDTO [driverId=" + driverId + ", boardId=" + boardId + ", arrival=" + arrival + ", departure="
+				+ departure + ", arrivalTime=" + arrivalTime + ", departureTime=" + departureTime + ", carShareDate="
+				+ carShareDate + ", headCount=" + headCount + "]";
 	}
 }
