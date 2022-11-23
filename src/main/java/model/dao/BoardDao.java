@@ -68,8 +68,8 @@ public class BoardDao {
 //	운전자가 boar등록시 boadid는 auto increment, user comment는 null, currentheadcount 는 0, realtimestate(실시간 탑승 허용 여부)는 1로 초기화
 	public void create(BoardDTO board) throws SQLException {
 		System.out.println(board);
-		String sql = "INSERT INTO BOARD VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {board.getDriverId(),"BOARDID_SEQUENCE.NEXTVAL",board.getArrival()
+		String sql = "INSERT INTO BOARD VALUES (?, BOARDID_SEQUENCE.NEXTVAL , ?, ?, ?, ?, ?, ?, ?, ?, ?) ";		
+		Object[] param = new Object[] {board.getDriverId(),board.getArrival()
 				,board.getDepartureTime(),board.getArrivalTime(),board.getDeparture(),board.getCarShareDate(),null,board.getHeadCount(),0,1};				
 		for(Object o:param) {
 			System.out.println(o);
