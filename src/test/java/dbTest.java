@@ -17,7 +17,7 @@ public class dbTest {
 			Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
 			con=DriverManager.getConnection("jdbc:oracle:thin:@dblab.dongduk.ac.kr:1521:orcl","dbpr0207","0977");
 			System.out.println("디비 접속 성공");
-			List<BoardDTO> list = bd.select();
+			List<BoardDTO> list = bd.selectAll();
 			System.out.println(list);
 //			BoardDTO board = new BoardDTO(4,"a","b","10","12","12/12",5);	
 //			bd.create(board);
