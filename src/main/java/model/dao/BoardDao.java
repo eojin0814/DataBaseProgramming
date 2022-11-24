@@ -20,105 +20,105 @@ import model.BoardDTO;
 
 public class BoardDao {
 	
-	private JDBCUtil jdbcUtil = null;
+//	private JDBCUtil jdbcUtil = null;
+//	
+//	public BoardDao() {			
+//		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
+//	}
+//	myBatis - xml 버전
+	private final String namespace = "repository.mybatis.mapper.BoardMapper";
+
+	private SqlSessionFactory sqlSessionFactory;
 	
-	public BoardDao() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
+	public BoardDao() {
+		String resource = "mybatis-config.xml";
+		InputStream inputStream;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
+		}
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
-	//myBatis - xml 버전
-//	private final String namespace = "repository.mybatis.mapper.BoardMapper";
-//
-//	private SqlSessionFactory sqlSessionFactory;
-//	
-//	public BoardDao() {
-//		String resource = "mybatis-config.xml";
-//		InputStream inputStream;
-//		try {
-//			inputStream = Resources.getResourceAsStream(resource);
-//		} catch (IOException e) {
-//			throw new IllegalArgumentException(e);
-//		}
-//		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-//	}
-//	
-//	public List<BoardDTO> selectAll() {
-//		System.out.println("selectAll");
-//		SqlSession sqlSession = sqlSessionFactory.openSession();
-//		try {
-//			return sqlSession.selectList(
-//					namespace + ".selectAllBoard");	
-//		} finally {
-//			System.out.println(sqlSession.selectList(
-//					namespace + ".selectAllBoard"));
-//			sqlSession.close();
-//		}
-//	}
-//	
-//	public BoardDTO findBoardByBoardId(int boardId) {
-//		System.out.println("select one");
-//		SqlSession sqlSession = sqlSessionFactory.openSession();
-//		try {
-//			return (BoardDTO)sqlSession.selectOne(
-//					namespace + ".findBoardByBoardId", boardId);	
-//		} finally {
-//			sqlSession.close();
-//		}
-//	}
+	
+	public List<BoardDTO> selectAll() {
+		System.out.println("selectAll");
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.selectList(
+					namespace + ".selectAllBoard");	
+		} finally {
+			System.out.println(sqlSession.selectList(
+					namespace + ".selectAllBoard"));
+			sqlSession.close();
+		}
+	}
+	
+	public BoardDTO findBoardByBoardId(int boardId) {
+		System.out.println("select one");
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return (BoardDTO)sqlSession.selectOne(
+					namespace + ".findBoardByBoardId", boardId);	
+		} finally {
+			sqlSession.close();
+		}
+	}
 //	
 //	운전자가 boar등록시 boadid는 auto increment, user comment는 null, currentheadcount 는 0, realtimestate(실시간 탑승 허용 여부)는 1로 초기화
-	public void create(BoardDTO board) throws SQLException {
-		System.out.println(board);
-		String sql = "INSERT INTO BOARD VALUES (?, BOARDID_SEQUENCE.NEXTVAL , ?, ?, ?, ?, ?, ?, ?, ?, ?) ";		
-		Object[] param = new Object[] {board.getDriverId(),board.getArrival()
-				,board.getDepartureTime(),board.getArrivalTime(),board.getDeparture(),board.getCarShareDate(),null,board.getHeadCount(),0,1};				
-		for(Object o:param) {
-			System.out.println(o);
-		}
-		System.out.println(param);
-		jdbcUtil.setSqlAndParameters(sql, param);
-		
-		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
-			System.out.println(result);
-			} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
-		}	
-	}
-	
-	@SuppressWarnings("null")
-	public List<BoardDTO> select() throws SQLException {
-		String sql = "select * from BOARD";		
-		jdbcUtil.setSqlAndParameters(sql, null);
-		try {				
-			List<BoardDTO> boardList = new ArrayList<BoardDTO>();
-			ResultSet rs = jdbcUtil.executeQuery();	// insert 문 실행
-		
-			while(rs.next()) {
-				BoardDTO board = new BoardDTO(
-					rs.getInt("DRIVERID"),
-					rs.getInt("BOARDID"),
-					rs.getString("ARRIVAL"),
-					rs.getString("DEPARTURE"),
-					rs.getString("ARRIVALTIME"),
-					rs.getString("DEPARTURETIME"),
-					rs.getString("CARSHARE_DATE"),
-					rs.getInt("HEADCOUNT")
-				);
-				System.out.println(board);
-				boardList.add(board);
-			}
-			return boardList;
-			} catch (Exception ex) {
-				return null;
-		} finally {		
-			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
-		}
-	}
+//	public void create(BoardDTO board) throws SQLException {
+//		System.out.println(board);
+//		String sql = "INSERT INTO BOARD VALUES (?, BOARDID_SEQUENCE.NEXTVAL , ?, ?, ?, ?, ?, ?, ?, ?, ?) ";		
+//		Object[] param = new Object[] {board.getDriverId(),board.getArrival()
+//				,board.getDepartureTime(),board.getArrivalTime(),board.getDeparture(),board.getCarShareDate(),null,board.getHeadCount(),0,1};				
+//		for(Object o:param) {
+//			System.out.println(o);
+//		}
+//		System.out.println(param);
+//		jdbcUtil.setSqlAndParameters(sql, param);
+//		
+//		try {				
+//			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+//			System.out.println(result);
+//			} catch (Exception ex) {
+//			jdbcUtil.rollback();
+//			ex.printStackTrace();
+//		} finally {		
+//			jdbcUtil.commit();
+//			jdbcUtil.close();	// resource 반환
+//		}	
+//	}
+//	
+//	@SuppressWarnings("null")
+//	public List<BoardDTO> select() throws SQLException {
+//		String sql = "select * from BOARD";		
+//		jdbcUtil.setSqlAndParameters(sql, null);
+//		try {				
+//			List<BoardDTO> boardList = new ArrayList<BoardDTO>();
+//			ResultSet rs = jdbcUtil.executeQuery();	// insert 문 실행
+//		
+//			while(rs.next()) {
+//				BoardDTO board = new BoardDTO(
+//					rs.getInt("DRIVERID"),
+//					rs.getInt("BOARDID"),
+//					rs.getString("ARRIVAL"),
+//					rs.getString("DEPARTURE"),
+//					rs.getString("ARRIVALTIME"),
+//					rs.getString("DEPARTURETIME"),
+//					rs.getString("CARSHARE_DATE"),
+//					rs.getInt("HEADCOUNT")
+//				);
+//				System.out.println(board);
+//				boardList.add(board);
+//			}
+//			return boardList;
+//			} catch (Exception ex) {
+//				return null;
+//		} finally {		
+//			jdbcUtil.commit();
+//			jdbcUtil.close();	// resource 반환
+//		}
+//	}
 	
 //	//이거 comment부분 이야기 해봐야됨
 //	public void updateUserComment(String comment, int boardId) {

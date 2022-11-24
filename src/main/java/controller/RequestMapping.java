@@ -19,6 +19,7 @@ public class RequestMapping {
 
     public void initMapping() {
     	
+    	
     	//board
     	mappings.put("/driver", new ListBoardController());
     	mappings.put("/driver/list", new ForwardController("/driver/boardList.jsp"));
@@ -57,6 +58,7 @@ public class RequestMapping {
         mappings.put("/community/create/form", new ForwardController("/community/creationForm.jsp"));
         mappings.put("/community/create", new CreateCommunityController());
         mappings.put("/community/update", new UpdateCommunityController());
+        
         
         logger.info("Initialized Request Mapping!");
     }

@@ -1,6 +1,9 @@
 package model;
 
-public class BoardDTO {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class BoardDTO implements Serializable {
 	private int driverId;
 	private int boardId;
 	private String arrival;

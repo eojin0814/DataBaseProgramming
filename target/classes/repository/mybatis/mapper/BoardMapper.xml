@@ -7,7 +7,7 @@
 
 	<sql id="BaseColumns">
 		DRIVERID AS driverId,
-		BOARDID AS boardID,
+		BOARDID AS boardId,
 		ARRIVAL AS arrival,
 		DEPARTURE AS departure,
 		ARRIVALTIME AS arrivalTime,
