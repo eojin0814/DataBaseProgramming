@@ -1,9 +1,11 @@
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
     <meta charset="utf-8">
+    
     <title>BizConsult - Consulting HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -73,8 +75,7 @@
                     <a href="" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">로그인</a>
                 </div>
             </nav>
-
- <!-- Newsletter Start -->
+            
         <div class="container-xxl bg-primary my-6 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container px-lg-5">
                 <div class="row align-items-center" style="height: 250px;">
@@ -90,13 +91,10 @@
                             <a href="" class="btn btn-outline-light rounded-pill border-2 py-2 px-1 animated slideInRight">location</a>
                         </div>
                     </div>
-                    <div class="col-md-6 text-center mb-n5 d-none d-md-block">
-                        <img class="img-fluid mt-5" style="max-height: 250px;" src="img/newsletter.png">
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- Newsletter End -->
+       
         
             <div class="container-xxl bg-primary hero-header">
                 <div class="container">
