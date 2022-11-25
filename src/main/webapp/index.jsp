@@ -73,7 +73,7 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href=" <c:url value='/customer/login/form' />" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">로그인</a>
+                    <a href=" <c:url value='/customer/login/form'/>" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">로그인</a>
                 </div>
             </nav>
             

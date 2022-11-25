@@ -1,4 +1,4 @@
-package controller.match;
+package controller.reservation;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
