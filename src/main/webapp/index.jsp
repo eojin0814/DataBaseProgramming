@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+       <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,46 +73,32 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">로그인</a>
+                    <a href=" <c:url value='/customer/login/form' />" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">로그인</a>
                 </div>
             </nav>
             
-        <div class="container-xxl bg-primary my-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="container px-lg-5">
-                <div class="row align-items-center" style="height: 250px;">
-                    <div class="col-12 col-md-6">
-                        <h3 class="text-white">어디로 갈까요?</h3>
-                        <small class="text-white">가고싶은 출발지,목적지를 적어주세요~</small>
-                        <div class="parent">
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="출발지" style="height: 55px;">
-           					&nbsp;
-           					&nbsp;
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="목적지" style="height: 55px;">
-                            &nbsp;
-                            <a href="" class="btn btn-outline-light rounded-pill border-2 py-2 px-1 animated slideInRight">location</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
         
-            <div class="container-xxl bg-primary hero-header">
-                <div class="container">
-                    <div class="row g-5 align-items-center">
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="text-white mb-4 animated zoomIn">We Help To Push Your Business To The Top Level</h1>
-                            <p class="text-white pb-3 animated zoomIn">Tempor rebum no at dolore lorem clita rebum rebum ipsum rebum stet dolor sed justo kasd. Ut dolor sed magna dolor sea diam. Sit diam sit justo amet ipsum vero ipsum clita lorem</p>
-                            
-                        </div>
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <img class="img-fluid animated zoomIn" src="img/hero.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Navbar & Hero End -->
+            
+        	<div class="container-xxl bg-primary my-6 wow fadeInUp" data-wow-delay="0.1s">
+            	<div class="container px-lg-5">
+                	<div class="row align-items-center" style="height: 250px;">
+                    	<div class="col-12 col-md-6">
+                       	 <h3 class="text-white">어디로 갈까요?</h3>
+                        	<small class="text-white">가고싶은 출발지,목적지를 적어주세요~</small>
+                       	 <div class="parent">
+                          	  	<input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="출발지" style="height: 55px;">
+           						&nbsp;
+           						&nbsp;
+                           		<input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="목적지" style="height: 55px;">
+                           	 	&nbsp;
+                            	<a href="" class="btn btn-outline-light rounded-pill border-2 py-2 px-1 animated slideInRight">location</a>
+                        	</div>
+                    	</div>
+                	</div>
+            	</div>
+        	</div>
+       
+
 
 
         <!-- About Start -->
