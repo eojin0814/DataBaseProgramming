@@ -40,7 +40,7 @@ public class ListBoardController implements Controller{
 			request.setAttribute("boardList", boardlist);
 			
 	    	log.debug("Create Community : {}", boardlist);
-	    	 return "/driver/boardList.jsp";	// 성공시 
+	    	 return "/";	// 성공시 
 	        
 		} catch (Exception e) {		// 예외 발생 시 입력 form으로 forwarding
           
