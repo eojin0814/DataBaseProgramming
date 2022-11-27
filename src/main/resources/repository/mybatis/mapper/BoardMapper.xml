@@ -28,7 +28,7 @@
 	</select>
 	
 	<select id="findLocationMatchingBoard" parameterType="map" resultType="Board">
-		SELECT *
+		SELECT BOARDID
 		FROM BOARD
 		WHERE ARRIVAL = arrival or DEPARTURE = departure
 	</select>

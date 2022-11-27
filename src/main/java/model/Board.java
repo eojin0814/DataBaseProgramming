@@ -12,12 +12,20 @@ public class Board implements Serializable {
 	private String departureTime;
 	private String carShareDate;
 	private int headCount;
-	private int CURRENTHEADCOUNT;
+	private int currentheadcount;
+
 	
-	
+	/**
+	 * @param boardId
+	 */
+	public Board(int boardId) {
+		super();
+		this.boardId = boardId;
+	}
+
 	//매칭을 위한 보드를 가져오는 생성자 
 	public Board(int driverId, String arrival, String departure, String arrivalTime, String departureTime,
-			String carShareDate, int headCount, int cURRENTHEADCOUNT) {
+			String carShareDate, int headCount, int currentheadcount) {
 		super();
 		this.driverId = driverId;
 		this.arrival = arrival;
@@ -26,8 +34,23 @@ public class Board implements Serializable {
 		this.departureTime = departureTime;
 		this.carShareDate = carShareDate;
 		this.headCount = headCount;
-		CURRENTHEADCOUNT = cURRENTHEADCOUNT;
+		this.currentheadcount = currentheadcount;
 	}
+	
+	public Board(int driverId, int boardId, String arrival, String departure, String arrivalTime, String departureTime,
+			String carShareDate, int headCount, int cURRENTHEADCOUNT) {
+		super();
+		this.driverId = driverId;
+		this.boardId = boardId;
+		this.arrival = arrival;
+		this.departure = departure;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+		this.carShareDate = carShareDate;
+		this.headCount = headCount;
+		this.currentheadcount = currentheadcount;
+	}
+
 	
 	public int getDriverId() {
 		return driverId;
@@ -77,17 +100,17 @@ public class Board implements Serializable {
 	public void setHeadCount(int headCount) {
 		this.headCount = headCount;
 	}
-	public int getCURRENTHEADCOUNT() {
-		return CURRENTHEADCOUNT;
+	public int getcurrentheadcount() {
+		return currentheadcount;
 	}
-	public void setCURRENTHEADCOUNT(int cURRENTHEADCOUNT) {
-		CURRENTHEADCOUNT = cURRENTHEADCOUNT;
+	public void setcurrentheadcount(int currentheadcount) {
+		currentheadcount = currentheadcount;
 	}
 	@Override
 	public String toString() {
 		return "Board [driverId=" + driverId + ", boardId=" + boardId + ", arrival=" + arrival + ", departure="
 				+ departure + ", arrivalTime=" + arrivalTime + ", departureTime=" + departureTime + ", carShareDate="
-				+ carShareDate + ", headCount=" + headCount + ", CURRENTHEADCOUNT=" + CURRENTHEADCOUNT + "]";
+				+ carShareDate + ", headCount=" + headCount + ", CURRENTHEADCOUNT=" + currentheadcount + "]";
 	}
 
 
