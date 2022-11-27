@@ -9,13 +9,15 @@ public class CustomerDTO {
 	private String name;
 	private int gender;
 	private int age;
-	private String job;
+	private int job; //1 학생 2 직장인
 	private String phone;
 	private String password;
 	private List<ReservationDTO> customerReservationInfo;
 	
+	
+	
 	//매칭을 위한 생성자
-	public CustomerDTO(int gender, int age, String job) {
+	public CustomerDTO(int gender, int age, int job) {
 		super();
 		this.gender = gender;
 		this.age = age;
@@ -23,7 +25,7 @@ public class CustomerDTO {
 	}
 	
 	//password포함 생성자 - 보여주면 안되는 나의 정보
-	public CustomerDTO(int id, String name, int gender, int age, String job, String phone, String password) {
+	public CustomerDTO(int id, String name, int gender, int age, int job, String phone, String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -35,7 +37,7 @@ public class CustomerDTO {
 	}
 	
 	//password제외한 생성자 - 보여줘도 되는 나의 정보
-	public CustomerDTO(int id, String name, int gender, int age, String job, String phone) {
+	public CustomerDTO(int id, String name, int gender, int age,int job, String phone) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -77,10 +79,10 @@ public class CustomerDTO {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public String getJob() {
+	public int getJob() {
 		return job;
 	}
-	public void setJob(String job) {
+	public void setJob(int job) {
 		this.job = job;
 	}
 	public String getPhone() {
@@ -95,4 +97,13 @@ public class CustomerDTO {
 	public void setCustomerReservationInfo(List<ReservationDTO> customerReservationInfo) {
 		this.customerReservationInfo = customerReservationInfo;
 	}
+
+	@Override
+	public String toString() {
+		return "CustomerDTO [id=" + id + ", name=" + name + ", gender=" + gender + ", age=" + age + ", job=" + job
+				+ ", phone=" + phone + ", password=" + password + ", customerReservationInfo=" + customerReservationInfo
+				+ "]";
+	}
+	
+	
 }

@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="model.BoardDTO" alias="BoardDTO" />
+		<typeAlias type="model.Board" alias="Board" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

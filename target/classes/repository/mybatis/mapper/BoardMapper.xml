@@ -12,7 +12,7 @@
 		DEPARTURE AS departure,
 		ARRIVALTIME AS arrivalTime,
 		DEPARTURETIME AS departureTime,
-		CARSHARE_DATE AS carShareDate,	
+		CARSHAREDATE AS carShareDate,	
 		HEADCOUNT AS headCount	
 	</sql>
 	
@@ -26,4 +26,11 @@
 		FROM BOARD
 		WHERE BOARDID = #{boardId}
 	</select>
+	
+	<select id="findLocationMatchingBoard" parameterType="map" resultType="Board">
+		SELECT *
+		FROM BOARD
+		WHERE ARRIVAL = arrival or DEPARTURE = departure
+	</select>
+	
 </mapper>

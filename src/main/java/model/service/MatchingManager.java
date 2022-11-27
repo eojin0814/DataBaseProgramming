@@ -2,7 +2,9 @@ package model.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
+import model.Board;
 import model.BoardDTO;
 import model.CustomerDTO;
 import model.dao.BoardDao;
@@ -22,6 +24,18 @@ public class MatchingManager {
 			e.printStackTrace();
 		}			
 	}
-
+	
+	public static MatchingManager getInstance() {
+		return matchingmanager;
+	}
+	public List<Board> findBasicBoardList(String userId)
+	{
+		return matchingDao.FindBasicMatching(userId);
+	}
+	
+	public List<Board> findLocationBoardList(Map<String, String> loc)
+	{
+		return matchingDao.FindLocationMatching(loc);
+	}
 
 }
