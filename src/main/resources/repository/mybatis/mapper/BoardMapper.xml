@@ -42,7 +42,7 @@
 		<result column="DEPARTURE" jdbcType="VARCHAR" property="departure" />
 		<result column="ARRIVALTIME" jdbcType="VARCHAR" property="arrivalTime" />
 		<result column="DEPARTURETIME" jdbcType="VARCHAR" property="departureTime" />
-		<result column="CARSHARE_DATE" jdbcType="VARCHAR" property="carShareDate" />
+		<result column="CARSHAREDATE" jdbcType="VARCHAR" property="carShareDate" />
 		<result column="HEADCOUNT" jdbcType="NUMERIC" property="headCount" />
 		<association column="DRIVERID" property="driver" javaType="DriverDTO" >
 			<id column="DRIVERID" property="driverId" />
@@ -59,7 +59,7 @@
 		b.DEPARTURE as departure,
 		b.ARRIVALTIME as arrivalTime,
 		b.DEPARTURETIME as departureTime,
-		b.CARSHARE_DATE as carShareDate,
+		b.CARSHAREDATE as carShareDate,
 		d.DRIVERNAME as "driver.driverName",
 		d.LICENSE as "driver.license",
 		d.CARNUMBER as "driver.carNumber"

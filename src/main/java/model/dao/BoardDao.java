@@ -131,7 +131,7 @@ public class BoardDao {
 					rs.getString("DEPARTURE"),
 					rs.getString("ARRIVALTIME"),
 					rs.getString("DEPARTURETIME"),
-					rs.getString("CARSHARE_DATE"),
+					rs.getString("CARSHAREDATE"),
 					rs.getInt("HEADCOUNT")
 				);
 				System.out.println(board);
