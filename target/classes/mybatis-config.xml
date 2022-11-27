@@ -6,6 +6,8 @@
 	<typeAliases>
 		<typeAlias type="model.BoardDTO" alias="BoardDTO" />
 		<typeAlias type="model.Board" alias="Board" />
+		<typeAlias type="model.DriverDTO" alias="DriverDTO" />
+		<typeAlias type="model.CommentDTO" alias="CommentDTO" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

@@ -16,21 +16,54 @@
 		HEADCOUNT AS headCount	
 	</sql>
 	
+	
 	<select id="selectAllBoard" resultType="BoardDTO">
 		SELECT <include refid="BaseColumns"/>
 		FROM BOARD
 	</select>
 	
-	<select id="findBoardByBoardId" parameterType="int" resultType="BoardDTO">
-		SELECT <include refid="BaseColumns"/>
+	<select id="findBoardByBoardId" parameterType="int" resultType="String">
+		SELECT ARRIVAL
 		FROM BOARD
 		WHERE BOARDID = #{boardId}
 	</select>
-	
+
 	<select id="findLocationMatchingBoard" parameterType="map" resultType="Board">
 		SELECT BOARDID
 		FROM BOARD
 		WHERE ARRIVAL = arrival or DEPARTURE = departure
 	</select>
-	
+
+	<!-- board id로 board정보, driver 정보 가지고 오기 -->
+	<resultMap id="associationResultMap" type="BoardDTO">
+		<id column="BOARDID" jdbcType="NUMERIC" property="boardId" />
+		<result column="DRIVERID" jdbcType="NUMERIC" property="driverId" />
+		<result column="ARRIVAL" jdbcType="VARCHAR" property="arrival" />
+		<result column="DEPARTURE" jdbcType="VARCHAR" property="departure" />
+		<result column="ARRIVALTIME" jdbcType="VARCHAR" property="arrivalTime" />
+		<result column="DEPARTURETIME" jdbcType="VARCHAR" property="departureTime" />
+		<result column="CARSHARE_DATE" jdbcType="VARCHAR" property="carShareDate" />
+		<result column="HEADCOUNT" jdbcType="NUMERIC" property="headCount" />
+		<association column="DRIVERID" property="driver" javaType="DriverDTO" >
+			<id column="DRIVERID" property="driverId" />
+			<result column="DRIVERNAME" property="driverName" />
+			<result column="LICENSE" property="license" />
+			<result column="CARNUMBER" property="carNumber" />	
+		</association>
+	</resultMap>
+	<select id="selectBoardDetailsByBoardID" parameterType="int" 
+	resultType="BoardDTO"> 
+		SELECT b.BOARDID as boardId,
+		b.DRIVERID as driverId,
+		b.ARRIVAL as arrival,
+		b.DEPARTURE as departure,
+		b.ARRIVALTIME as arrivalTime,
+		b.DEPARTURETIME as departureTime,
+		b.CARSHARE_DATE as carShareDate,
+		d.DRIVERNAME as "driver.driverName",
+		d.LICENSE as "driver.license",
+		d.CARNUMBER as "driver.carNumber"
+		FROM DRIVER d, BOARD b
+		WHERE d.DRIVERID = b.DRIVERID AND b.BOARDID = #{boardId} 
+	</select>
 </mapper>

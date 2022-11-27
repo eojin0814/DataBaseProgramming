@@ -48,6 +48,11 @@ public class CustomerDTO {
 	}
 	
 	
+	public CustomerDTO() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+
 	public String getPassword() {
 		return password;
 	}

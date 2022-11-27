@@ -10,6 +10,7 @@ import controller.board.*;
 import controller.comm.*;
 import controller.customer.CustomerLoginController;
 import controller.customer.RegisterCustomerController;
+import controller.reservation.SetReservationDetails;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -21,16 +22,21 @@ public class RequestMapping {
     	
     	
     	//board
+    	//모든 board 테이블의 내용 가지고 오기
     	mappings.put("/driver", new ListBoardController());
-    	mappings.put("/driver/list", new ForwardController("/driver/boardList.jsp"));
+//    	mappings.put("/driver/list", new ForwardController("/driver/boardList.jsp"));
     	mappings.put("/driver/register/board/form", new ForwardController("/driver/registerBoard.jsp"));
     	mappings.put("/driver/register/board", new CreateBoardController());
     	
+    	//board 클릭시 넘어가는 예약페이지
+    	mappings.put("/reservation/view/init",  new SetReservationDetails());
     	mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
     	mappings.put("/customer/login", new CustomerLoginController());
     	mappings.put("/customer/register/form",  new ForwardController("/customer/registerForm.jsp"));
     	mappings.put("/customer/register",  new RegisterCustomerController());
     	
+    	//board에 댓글 단거 처리하기
+    	mappings.put("/board/comment", new SendBoardCommentController());
 
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
         mappings.put("/", new ForwardController("index.jsp"));

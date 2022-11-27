@@ -12,10 +12,30 @@ public class BoardDTO implements Serializable {
 	private String departureTime;
 	private String carShareDate;
 	private int headCount;
+	private DriverDTO driver;
+
+	public DriverDTO getDriver() {
+		return driver;
+	}
+
+
+	public BoardDTO() {
+		super();
+		System.out.println("boardDTO-0");
+		System.out.println("arriva" + arrivalTime);
+	}
+
+
+	public void setDriver(DriverDTO driver) {
+		this.driver = driver;
+	}
+
 
 	public BoardDTO(int driverId, String arrival, String departure, String arrivalTime, String departureTime,
-			String carShareDate, int headCount) {
+			String carShareDate, int headCount,DriverDTO driver) {
+	
 		super();
+		System.out.println("boardDTO");
 		this.driverId = driverId;
 		this.arrival = arrival;
 		this.departure = departure;
@@ -23,6 +43,7 @@ public class BoardDTO implements Serializable {
 		this.departureTime = departureTime;
 		this.carShareDate = carShareDate;
 		this.headCount = headCount;
+		this.driver = driver;
 	}
 
 	
@@ -92,6 +113,6 @@ public class BoardDTO implements Serializable {
 	public String toString() {
 		return "BoardDTO [driverId=" + driverId + ", boardId=" + boardId + ", arrival=" + arrival + ", departure="
 				+ departure + ", arrivalTime=" + arrivalTime + ", departureTime=" + departureTime + ", carShareDate="
-				+ carShareDate + ", headCount=" + headCount + "]";
+				+ carShareDate + ", headCount=" + headCount + ", driver=" + driver + "]";
 	}
 }

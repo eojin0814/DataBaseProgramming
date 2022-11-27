@@ -17,6 +17,7 @@ import model.Reservation;
 import model.ReservationDTO;
 import model.User;
 import model.BoardDTO;
+import model.CommentDTO;
 
 public class BoardDao {
 	
@@ -55,12 +56,36 @@ public class BoardDao {
 //		}
 //	}
 //	
-	public BoardDTO findBoardByBoardId(int boardId) {
-		System.out.println("select one");
+	
+	//boardId통해서 boar정보와 driver정보 가지고 오기 - mybatis xml버전
+	public BoardDTO selectBoardDetailsByBoardID(int boardId) {
+		System.out.println("selectBoardDetailsByBoardID");
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
 			return (BoardDTO)sqlSession.selectOne(
+					namespace + ".selectBoardDetailsByBoardID", boardId);	
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public String findBoardByBoardId(int boardId) {
+		System.out.println("select one");
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return (String)sqlSession.selectOne(
 					namespace + ".findBoardByBoardId", boardId);	
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public CommentDTO selectComment(int boardId) {
+		System.out.println("select comment dao");
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return (CommentDTO)sqlSession.selectOne(
+					namespace + ".selectComment", boardId);	
 		} finally {
 			sqlSession.close();
 		}
@@ -113,6 +138,38 @@ public class BoardDao {
 				boardList.add(board);
 			}
 			return boardList;
+			} catch (Exception ex) {
+				return null;
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}
+	}
+	
+	//comment초기에 보드 아이디로 페이지 들어가면 보여줄 댓글 창
+	public List<CommentDTO> findCommentByBoardId(int boardId) throws SQLException {
+		System.out.println("dao.findcommentByBoardId 들어옴");
+		String sql = "select c.commentid, c.boardid, c.details, u.name from comm c, customer u where c.customerid = u.customerid and c.boardid = ?";	
+		Object[] param = new Object[] {boardId};
+		jdbcUtil.setSqlAndParameters(sql, param);
+		try {				
+			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
+			ResultSet rs = jdbcUtil.executeQuery();	// insert 문 실행
+			
+			while(rs.next()) {
+				CommentDTO comment = new CommentDTO();
+				CustomerDTO customer = new CustomerDTO();
+				customer.setName(rs.getString("NAME"));
+				
+				comment.setCommentNo(rs.getInt("COMMENTID"));
+				comment.setBoardId(rs.getInt("BOARDID"));
+				comment.setDetails(rs.getString("DETAILS"));
+				comment.setCustomer(customer);
+				System.out.println("dao " + comment.getCustomer().getName());
+				System.out.println("dao " + comment);
+				commentList.add(comment);
+			}
+			return commentList;
 			} catch (Exception ex) {
 				return null;
 		} finally {		

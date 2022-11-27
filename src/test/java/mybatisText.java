@@ -19,9 +19,10 @@ private static MatchingDAO matchingDao = new MatchingDAO();
 		
 		System.out.println("CommentSessionRepositoryTest ends...");
 
+		selectBoardDetailsByBoardID(1);
 //		findBoardByBoardId(1);
 	}
-	
+
 	
 //	public static void selectAll() throws SQLException {
 //	
@@ -47,5 +48,13 @@ private static MatchingDAO matchingDao = new MatchingDAO();
 		System.out.println(loc);
 		List<Board> list = matchingDao.FindLocationMatching(loc);
 		System.out.println(list);
+	}
+
+		
+	
+	public static void selectBoardDetailsByBoardID(int id) {
+		BoardDTO bt = boardDao.selectBoardDetailsByBoardID(id);
+		System.out.println("board : " + bt);
+		System.out.println("driver : " + bt.getDriver().getDriverName());
 	}
 }
