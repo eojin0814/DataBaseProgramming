@@ -21,13 +21,14 @@ public class SetReservationDetails implements Controller{
 		System.out.println(request.getParameter("boardId"));
 		//board id
 		int boardIdInt = Integer.parseInt(request.getParameter("boardId"));
-		
+		System.out.println(boardIdInt);
 		
 		BoardManager boardMan = BoardManager.getInstance();
 		
 		//클릭한 보드정보, 운전자 정보 가지고 오기
 		BoardDTO board = boardMan.selectBoardDetailsByBoardID(boardIdInt);
 	
+		System.out.println(board);
 		//board정보 request에 등록하기
 		HttpSession session = request.getSession();
 		session.setAttribute("board", board);

@@ -28,17 +28,7 @@ function register(targetUri){
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link href=" <c:url value= '/lib/animate/animate.min.css'/>" rel="stylesheet">
-    
-    <link href=" <c:url value= '/lib/owlcarousel/assets/owl.carousel.min.css'/>" rel="stylesheet">
-
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="<c:url value= '/css/bootstrap.min.css'/> " rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="<c:url value= '/css/style.css'/> " rel="stylesheet">
-
+    <!-- Libraries Stylesheet -->
     <link href="${pageContext.request.contextPath }/lib/animate/animate.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
@@ -47,7 +37,6 @@ function register(targetUri){
 
     <!-- Template Stylesheet -->
     <link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -74,13 +63,13 @@ function register(targetUri){
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">내 카플</a>
-                        <a href="service.html" class="nav-item nav-link">예약 정보</a>
+                        <a href="about.html" class="nav-item nav-link">�� 移댄��</a>
+                        <a href="service.html" class="nav-item nav-link">���쎌��蹂�</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="feature.html" class="dropdown-item">내 채팅</a>
-                                <a href="quote.html" class="dropdown-item">마이페이지</a>
+                                <a href="feature.html" class="dropdown-item">留��댄���댁�</a>
+                                <a href="quote.html" class="dropdown-item">�� 梨���</a>
                                 <a href="team.html" class="dropdown-item">Our Team</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
@@ -94,33 +83,67 @@ function register(targetUri){
             
         
             
-        	<div class="container-xxl bg-primary page-header">
-                <div class="container text-center">
-                    <h1 class="text-white animated zoomIn mb-3">어디로 갈까 ?</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <div class="col-md-6 col-lg-3">
-                                <input type="text" class="form-control border-0 py-3" placeholder="출발지">
-                            </div>
-                          
-                         	<div class="col-md-6 col-lg-3">
-                                <input type="text" class="form-control border-0 py-3" placeholder="도착지">
-                            </div>
-                        
-                            <div class="col-md-2">
-                        		<button class="btn btn-dark border-0 w-100 py-3">Search</button>
-                    		</div>
-                     </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        	<div class="container-xxl bg-primary my-6 wow fadeInUp" data-wow-delay="0.1s">
+            	<div class="container px-lg-5">
+                	<div class="row align-items-center" style="height: 250px;">
+                    	<div class="col-12 col-md-6">
+                       	 <h3 class="text-white">�대��濡� 媛�源���?</h3>
+                        	<small class="text-white">媛�怨��띠�� 異�諛�吏�,紐⑹��吏�瑜� ���댁＜�몄��~</small>
+                       	 <div class="parent">
+                          	  	<input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="異�諛�吏�" style="height: 55px;">
+           						&nbsp;
+           						&nbsp;
+                           		<input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="紐⑹��吏�" style="height: 55px;">
+                           	 	&nbsp;
+                            	<a href="" class="btn btn-outline-light rounded-pill border-2 py-2 px-1 animated slideInRight">location</a>
+                        	</div>
+                    	</div>
+                	</div>
+            	</div>
+        	</div>
        
 
 
 
+        <!-- About Start -->
+        <div class="container-xxl py-6">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow zoomIn" data-wow-delay="0.1s">
+                        
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">About Us</div>
+                        <h2 class="mb-4">Award Wining Consultancy Agency For Your Business</h2>
+                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod</p>
+                        <div class="row g-3 mb-4">
+                            <div class="col-12 d-flex">
+                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                    <i class="fa fa-user-tie text-white"></i>
+                           se     </div>
+                                <div class="ms-4">
+                                    <h6>Business Planning</h6>
+                                    <span>Tempor erat elitr rebum at clita. Diam dolor ipsum amet eos erat ipsum lorem et sit sed stet lorem sit clita duo</span>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex">
+                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                    <i class="fa fa-chart-line text-white"></i>
+                                </div>
+                                <div class="ms-4">
+                                    <h6>Financial Analaysis</h6>
+                                    <span>Tempor erat elitr rebum at clita. Diam dolor ipsum amet eos erat ipsum lorem et sit sed stet lorem sit clita duo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
 
-      
+
        
 
 
@@ -128,7 +151,8 @@ function register(targetUri){
         <div class="container-xxl py-6">
             <div class="container">
                 <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Our Services</div>
+                    <div class="d-inline-block border rounded-pill text-primary px-4 mb-3"><a href="<c:url value='/driver/register/board/form'>
+						   </c:url>">차량 등록하기</a></div>
                     <h2 class="mb-5">차량 예약하기</h2>
                 </div>
                 <div class="row g-4">
@@ -163,6 +187,97 @@ function register(targetUri){
         <!-- Service End -->
 
 
+        <!-- Features Start -->
+        <div class="container-xxl py-6">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Features</div>
+                        <h2 class="mb-4">Why People Choose Us? We Are Trusted & Award Wining Agency</h2>
+                        <p>Clita nonumy sanctus nonumy et clita tempor, et sea amet ut et sadipscing rebum amet takimata amet, sed accusam eos eos dolores dolore et. Et ea ea dolor rebum invidunt clita eos. Sea accusam stet stet ipsum, sit ipsum et ipsum kasd</p>
+                        <p>Et ea ea dolor rebum invidunt clita eos. Sea accusam stet stet ipsum, sit ipsum et ipsum kasd</p>
+                        <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Read More</a>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="row g-5">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                        <i class="fa fa-cubes text-white"></i>
+                                    </div>
+                                    <h6 class="mb-0">Best In Industry</h6>
+                                </div>
+                                <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos diam dolor</span>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                        <i class="fa fa-percent text-white"></i>
+                                    </div>
+                                    <h6 class="mb-0">99% Success Rate</h6>
+                                </div>
+                                <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos diam dolor</span>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                        <i class="fa fa-award text-white"></i>
+                                    </div>
+                                    <h6 class="mb-0">Award Winning</h6>
+                                </div>
+                                <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos diam dolor</span>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                        <i class="fa fa-smile-beam text-white"></i>
+                                    </div>
+                                    <h6 class="mb-0">100% Happy Client</h6>
+                                </div>
+                                <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos diam dolor</span>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                        <i class="fa fa-user-tie text-white"></i>
+                                    </div>
+                                    <h6 class="mb-0">Professional Advisors</h6>
+                                </div>
+                                <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos diam dolor</span>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.6s">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                        <i class="fa fa-headset text-white"></i>
+                                    </div>
+                                    <h6 class="mb-0">24/7 Customer Support</h6>
+                                </div>
+                                <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos diam dolor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Features End -->
+
+
+        <!-- Client Start -->
+        <div class="container-xxl bg-primary my-6 py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="owl-carousel client-carousel">
+                    <a href="#"><img class="img-fluid" src="img/logo-1.png" alt=""></a>
+                    <a href="#"><img class="img-fluid" src="img/logo-2.png" alt=""></a>
+                    <a href="#"><img class="img-fluid" src="img/logo-3.png" alt=""></a>
+                    <a href="#"><img class="img-fluid" src="img/logo-4.png" alt=""></a>
+                    <a href="#"><img class="img-fluid" src="img/logo-5.png" alt=""></a>
+                    <a href="#"><img class="img-fluid" src="img/logo-6.png" alt=""></a>
+                    <a href="#"><img class="img-fluid" src="img/logo-7.png" alt=""></a>
+                    <a href="#"><img class="img-fluid" src="img/logo-8.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <!-- Client End -->
 
 
         <!-- Testimonial Start -->
@@ -223,7 +338,33 @@ function register(targetUri){
         <!-- Testimonial End -->
 
 
+        <!-- Team Start -->
+        <div class="container-xxl py-6">
+            <div class="container">
+                <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Our Team</div>
+                    <h2 class="mb-5">Meet Our Team Members</h2>
+                </div>
     
+                <div class="row g-4">
+                 <c:forEach var="board" items="${boardList}" varStatus="status">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item">
+                            <h5>Full Name</h5>
+                            <p class="mb-4">Designation</p>
+                            <img class="img-fluid rounded-circle w-100 mb-4" src="img/team-1.jpg" alt="">
+                            <div class="d-flex justify-content-center">
+                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+        <!-- Team End -->
         
 
         <!-- Footer Start -->

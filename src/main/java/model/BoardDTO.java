@@ -31,6 +31,22 @@ public class BoardDTO implements Serializable {
 	}
 
 
+	//board 생성시
+	public BoardDTO(int driverId, String arrival, String departure, String arrivalTime, String departureTime,
+			String carShareDate, int headCount) {
+	
+		super();
+		System.out.println("boardDTO");
+		this.driverId = driverId;
+		this.arrival = arrival;
+		this.departure = departure;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+		this.carShareDate = carShareDate;
+		this.headCount = headCount;
+	}
+
+	
 	public BoardDTO(int driverId, String arrival, String departure, String arrivalTime, String departureTime,
 			String carShareDate, int headCount,DriverDTO driver) {
 	
