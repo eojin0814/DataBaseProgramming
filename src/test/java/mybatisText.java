@@ -11,17 +11,12 @@ private static BoardDao boardDao = new BoardDao();
 		
 		
 
-		findBoardByBoardId(1);
-	}
-	public static void selectAll() {
-	
-		List<BoardDTO> list = boardDao.selectAll();
-		
-		System.out.println(list);
+		selectBoardDetailsByBoardID(1);
 	}
 	
-	public static void findBoardByBoardId(int id) {
-		BoardDTO bt = boardDao.findBoardByBoardId(id);
-		System.out.println(bt);
+	public static void selectBoardDetailsByBoardID(int id) {
+		BoardDTO bt = boardDao.selectBoardDetailsByBoardID(id);
+		System.out.println("board : " + bt);
+		System.out.println("driver : " + bt.getDriver().getDriverName());
 	}
 }

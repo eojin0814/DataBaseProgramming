@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="utf-8"%>
-       <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<script>
+function register(targetUri){	
+  window.location.href = targetUri;
+}
+</script>
     <meta charset="utf-8">
     
     <title>BizConsult - Consulting HTML Template</title>
@@ -25,14 +29,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -148,24 +152,28 @@
             <div class="container">
                 <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Our Services</div>
-                    <h2 class="mb-5">We Provide Solutions On Your Business</h2>
+                    <h2 class="mb-5">차량 예약하기</h2>
                 </div>
                 <div class="row g-4">
                   <c:forEach var="board" items="${boardList}" varStatus="status">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item rounded h-100">
+                   
+                        <div class="service-item rounded h-100" onClick="register('<c:url value='/reservation/view/init'>
+						      <c:param name='boardId' value='${board.boardId}'/>
+						   </c:url>')">
                             <div class="d-flex justify-content-between">
                                 <div class="service-icon">
                                     <i class="fa fa-user-tie fa-2x"></i>
                                 </div>
-                                <a class="service-btn" href="">
+                                <a class="service-btn" href="<c:url value='/driver/register/board/form' />">
                                     <i class="fa fa-link fa-2x"></i>
                                 </a>
                             </div>
                             <div class="p-5">
                                 <h5 class="mb-3">${board.departure } -> ${board.arrival } </h5>
-                                <span>출발시간:${board.departureTime}</span>
-                                <span>도착시간: ${board.arrivalTime}</span>
+                                <span>출발시간 : ${board.departureTime}</span>
+                                <p><span>도착시간 : ${board.arrivalTime}</span>
+                                <p><span>탐승 가능 인원 수 : ${board.headCount }</span>
                             </div>
                         </div>
                     </div>
@@ -283,7 +291,7 @@
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                         <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="../img/testimonial-1.jpg">
                             <div class="ps-3">
                                 <h6 class="mb-1">Client Name</h6>
                                 <small>Profession</small>
@@ -433,13 +441,13 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath }/lib/wow/wow.min.js"></script>
+    <script src="${pageContext.request.contextPath }/lib/easing/easing.min.js"></script>
+    <script src="${pageContext.request.contextPath }/lib/waypoints/waypoints.min.js"></script>
+    <script src="${pageContext.request.contextPath }/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="${pageContext.request.contextPath }/js/main.js"></script>
 </body>
 
 </html>

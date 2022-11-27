@@ -20,7 +20,7 @@ public class CreateBoardController implements Controller{
 		System.out.println("createController");
     	BoardDTO board = new BoardDTO(
     		Integer.parseInt(request.getParameter("driverId")),
-			request.getParameter("arrival"),
+			0, request.getParameter("arrival"),
 			request.getParameter("departure"),
 			request.getParameter("arrivalTime"),
 			request.getParameter("departureTime"),
