@@ -22,7 +22,20 @@ public class DriverDTO implements Serializable{
 	private String driverStrId; //실제 사용자가 로그인 할 때 입력하는 아이디
 	private String carNumber;
 	private int license;
+	private int driverName;
 	
+	public int getDriverName() {
+		return driverName;
+	}
+
+	public void setDriverName(int driverName) {
+		this.driverName = driverName;
+	}
+
+	public DriverDTO() {
+		super();
+	}
+
 	//매칭을 위한 생성자
 	public DriverDTO(int gender, int age, String job) {
 		super();

@@ -30,7 +30,7 @@ public class SetReservationDetails implements Controller{
 	
 		//board정보 request에 등록하기
 		HttpSession session = request.getSession();
-		request.setAttribute("board", board);
+		session.setAttribute("board", board);
 		request.setCharacterEncoding("utf-8");
 		
 		List<CommentDTO> list = boardMan.findCommentByBoardId(boardIdInt);

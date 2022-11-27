@@ -149,18 +149,17 @@ public class BoardDao {
 	//comment초기에 보드 아이디로 페이지 들어가면 보여줄 댓글 창
 	public List<CommentDTO> findCommentByBoardId(int boardId) throws SQLException {
 		System.out.println("dao.findcommentByBoardId 들어옴");
-		String sql = "select c.commentid, c.boardid, c.details, u.name from comm c, customer u where c.customerid = u.customerid and c.boardid = ?";	
+		String sql = "select c.commentid, c.boardid, c.details, u.name, u.customerid from comm c, customer u where c.customerid = u.customerid and c.boardid = ?";	
 		Object[] param = new Object[] {boardId};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
 			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 			ResultSet rs = jdbcUtil.executeQuery();	// insert 문 실행
-			
 			while(rs.next()) {
 				CommentDTO comment = new CommentDTO();
 				CustomerDTO customer = new CustomerDTO();
 				customer.setName(rs.getString("NAME"));
-				
+				customer.setId(rs.getInt("CUSTOMERID"));
 				comment.setCommentNo(rs.getInt("COMMENTID"));
 				comment.setBoardId(rs.getInt("BOARDID"));
 				comment.setDetails(rs.getString("DETAILS"));
@@ -172,6 +171,21 @@ public class BoardDao {
 			return commentList;
 			} catch (Exception ex) {
 				return null;
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}
+	}
+	
+	//전송 버튼 눌렀을때 user id와 board id를 comment table에 넣어주기
+	public void insertComment(int customerId, int boardId, String details) throws Exception {
+		System.out.println("dao.insertComment 들어옴");
+		String sql = "insert into comm values (commentid_sequence.nextval, ?, ?, ?)";	
+		Object[] param = new Object[] {customerId,boardId,details};
+		jdbcUtil.setSqlAndParameters(sql, param);
+		try {				
+			int rs = jdbcUtil.executeUpdate();	// insert 문 실행
+			System.out.println(rs);		
 		} finally {		
 			jdbcUtil.commit();
 			jdbcUtil.close();	// resource 반환

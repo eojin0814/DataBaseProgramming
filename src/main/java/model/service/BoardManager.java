@@ -60,6 +60,18 @@ public class BoardManager {
 		return boardDao.findCommentByBoardId(boardId);
 	}
 	
+	//댓글 달고 나서 update하는거
+	public List<CommentDTO>  updateComment (int customerId, int boardId, String details) throws SQLException, ExistingUserException {
+		System.out.println("Manager - updateComment");
+		try {
+			//삽입 먼저 해줘야한다
+			boardDao.insertComment(customerId, boardId, details);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return boardDao.findCommentByBoardId(boardId);
+	}
 
 
 }
