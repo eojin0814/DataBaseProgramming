@@ -27,9 +27,9 @@ public class ReservationDAO {
 		//여기서 확인해야하는 점 - RESERVATIONID는 autoinrement설정, insert시 자동으로 생성되는지 봐야함
 		//state - 1 : 예약 안한 상태, state -  2 : 예약 대기 상태, state - 3:예약 수락 상태
 		//신청시 실행되는 dao -> create<reservation 테이블 생성>
-	public void create(int boardId, CustomerDTO customer) throws SQLException {
+	public void create(int boardId, int userId) throws SQLException {
 		String sql = "INSERT INTO RESERVATION VALUES (?, ?, ?, ?)";		
-		Object[] param = new Object[] {"RESERVATIONID_SEQUENCE.NEXTVAL", customer.getId(), 2, boardId};				
+		Object[] param = new Object[] {"RESERVATIONID_SEQUENCE.NEXTVAL", userId, 2, boardId};				
 		jdbcUtil.setSqlAndParameters(sql, param);
 			
 		try {				
@@ -50,12 +50,12 @@ public class ReservationDAO {
 	 */
 	//여기서 STATE가 0인경우 1인경우 2인경우 등 나눠서 생각 할 수 있을것 같우!!
 	//이 메소드는 모든 나의 예약 정보를 가져올 때 사용하는 메소드<예약 대기나, 완료나, 취소와 상관 없는 모든 나의 예약 정보>
-	public List<ReservationDTO> getMyReservation(CustomerDTO customer) throws SQLException {
+	public List<ReservationDTO> waitReservation(int userId) throws SQLException {
 		//세션에 있는 customer 객체를 보내준 뒤, board 테이블과 customer id가 저장되어 있는 reservation table join 후 reservation dto에 저장할 값들 뽑아 오기
 		String sql = "SELECT DRIVERID, ARRIVAL, DEPARTURETIME, ARRIVALTIME, DEPARTURE, STATE "
 				+ "FROM BOARD B JOIN RESERVATION R ON B.BOARDID = R.BOARDID "
 				+ "WHERE R.CUSTOMERID=?";
-		jdbcUtil.setSqlAndParameters(sql,  new Object[] {customer.getId()});		// JDBCUtil에 query문 설정
+		jdbcUtil.setSqlAndParameters(sql,  new Object[] {userId});		// JDBCUtil에 query문 설정
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
@@ -72,6 +72,7 @@ public class ReservationDAO {
 					);
 				myReservation.add(reservation);				
 			}		
+			System.out.println(myReservation);
 			return myReservation;					
 			
 		} catch (Exception ex) {
@@ -81,7 +82,40 @@ public class ReservationDAO {
 		}
 		return null;
 	}
-
+	// 확정 예약
+	public List<ReservationDTO> confirmReservation(int userId) throws SQLException {
+		//세션에 있는 customer 객체를 보내준 뒤, board 테이블과 customer id가 저장되어 있는 reservation table join 후 reservation dto에 저장할 값들 뽑아 오기
+		String sql = "SELECT DRIVERID, ARRIVAL, DEPARTURETIME, ARRIVALTIME, DEPARTURE, STATE, RESERVATIONID "
+				+ "FROM BOARD B JOIN RESERVATION R ON B.BOARDID = R.BOARDID "
+				+ "WHERE R.CUSTOMERID= ?";
+		jdbcUtil.setSqlAndParameters(sql,  new Object[] {userId});		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<ReservationDTO> myReservation = new ArrayList<ReservationDTO>();	// User들의 리스트 생성
+			while (rs.next()) {
+				ReservationDTO reservation = new ReservationDTO(			
+					rs.getInt("DRIVERID"),
+					rs.getString("ARRIVAL"),
+					rs.getString("DEPARTURE"),
+					rs.getString("ARRIVALTIME"),
+					rs.getString("DEPARTURETIME"),
+					rs.getInt("STATE"),
+					rs.getInt("RESERVATIONID")
+					);
+				myReservation.add(reservation);				
+			}		
+			System.out.println(myReservation);
+			return myReservation;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
 	/**
 	 * 예약확정
 	 * + 보드에 이용자 업데이트
@@ -106,6 +140,7 @@ public class ReservationDAO {
 			Object[] param = new Object[] {3 , new Object[] {result}};				
 			jdbcUtil.setSqlAndParameters(sql2, param);
 			int result2 = jdbcUtil.executeUpdate();
+			
 			return result2;
 			//reservationId를 통해 state 값을 변경
 		} catch (Exception ex) {

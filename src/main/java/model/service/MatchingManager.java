@@ -33,9 +33,9 @@ public class MatchingManager {
 		return matchingDao.FindBasicMatching(userId);
 	}
 	
-	public List<Board> findLocationBoardList(Map<String, String> loc)
+	public List<Board> findLocationBoardList(String arrival,String depature)
 	{
-		return matchingDao.FindLocationMatching(loc);
+		return matchingDao.FindLocationMatching(arrival,depature);
 	}
 
 }
