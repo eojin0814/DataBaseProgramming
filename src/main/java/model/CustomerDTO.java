@@ -16,6 +16,13 @@ public class CustomerDTO {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
 	//매칭을 위한 생성자
 	public CustomerDTO(int gender, int age, int job) {
 		super();
