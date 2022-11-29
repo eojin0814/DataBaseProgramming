@@ -73,5 +73,12 @@ public class BoardManager {
 		return boardDao.findCommentByBoardId(boardId);
 	}
 
+	//드라이버 아이디로 등록한 보드들 보여주기
+	public List<BoardDTO> showMyBoardsByDriverId(int driverId){
+		System.out.println("Manager - showMyBoardsByDriverId : " + driverId);
+		List<BoardDTO> listBoard = boardDao.showMyBoardsByDriverId(driverId);
+		
+		return listBoard;
+	}
 
 }

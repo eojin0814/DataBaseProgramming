@@ -75,7 +75,9 @@ function register(targetUri){
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="<c:url value='/driver/myBoards'>
+						      <c:param name='driverId' value='10'/>
+						   </c:url>" class="nav-item nav-link">내 차량</a>
                     </div>
                     <a href=" <c:url value='/customer/login/form'/>" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">濡�洹몄��</a>
                 </div>
@@ -387,7 +389,7 @@ function register(targetUri){
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Quick Link</h5>
                         <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
+                        <a class="btn btn-link" href="<>">나의 차량</a>
                         <a class="btn btn-link" href="">Privacy Policy</a>
                         <a class="btn btn-link" href="">Terms & Condition</a>
                         <a class="btn btn-link" href="">Career</a>

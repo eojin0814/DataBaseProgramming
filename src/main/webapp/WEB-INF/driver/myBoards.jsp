@@ -22,7 +22,9 @@ function sendComment(targetUri){
 	  document.frm.submit();
 	}
 </script>
-    <%request.setCharacterEncoding("EUC-KR");%>
+    <%request.setCharacterEncoding("EUC-KR");
+    System.out.println(session.getAttribute("boadList"));
+    %>
     <body>
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -49,21 +51,18 @@ function sendComment(targetUri){
                         <div class="card bg-light">
                             <div class="card-body">
                                 <!-- Comment form-->
-                                <form class="mb-4" name="frm">
+                              <h1>내가 등록한 차량</h1>
+                              <p>
                          		<input type="hidden" name="boardId" value="${board.boardId }">
-                                <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" id="comment" name="comment"></textarea></form>
-                               	<button onClick="sendComment('<c:url value='/board/comment'></c:url>')">버튼</button>
-                                <!-- Comment with nested comments-->
-                                <!-- Single comment-->
-                                <p>
-                                <c:forEach var="comment" items="${commentList}" varStatus="status">
+                                <c:forEach var="board" items="${boardList}" varStatus="status">
                                 <div class="d-flex">
                                 	<p>
                                     <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                                     <div class="ms-3">
-                                        <div class="fw-bold">${comment.customer.name }</div>
+                                        <div class="fw-bold">board Id : ${board.boardId }</div>
                                         <p>
-                                        ${comment.details } 
+                                        <span>${board.departure } -> ${board.arrival }</span>
+                                  
                                        </div>
                                 </div>
                                 </c:forEach>
@@ -85,7 +84,9 @@ function sendComment(targetUri){
                     </div>
                     <!-- Categories widget-->
                     <div class="card mb-4">
-                        <div class="card-header">보드 정보</div>
+                        <div class="card-header" onClick="register('<c:url value='/board/update'>
+  						      <c:param name='boardId' value='${board.boardId}'/>
+  								   </c:url>')">보드 정보 수정하기</div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">

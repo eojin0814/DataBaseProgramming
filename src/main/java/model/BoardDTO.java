@@ -13,6 +13,44 @@ public class BoardDTO implements Serializable {
 	private String carShareDate;
 	private int headCount;
 	private DriverDTO driver;
+	private int currentHeadCount;
+	private int realtimeState;
+	
+	public BoardDTO(int driverId, int boardId, String arrival, String departure, String arrivalTime,
+			String departureTime, String carShareDate, int headCount, int currentHeadCount, int realtimeState) {
+		super();
+		this.driverId = driverId;
+		this.boardId = boardId;
+		this.arrival = arrival;
+		this.departure = departure;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+		this.carShareDate = carShareDate;
+		this.headCount = headCount;
+		this.currentHeadCount = currentHeadCount;
+		this.realtimeState = realtimeState;
+	}
+
+
+	public int getCurrentHeadCount() {
+		return currentHeadCount;
+	}
+
+
+	public void setCurrentHeadCount(int currentHeadCount) {
+		this.currentHeadCount = currentHeadCount;
+	}
+
+
+	public int getRealtimeState() {
+		return realtimeState;
+	}
+
+
+	public void setRealtimeState(int realtimeState) {
+		this.realtimeState = realtimeState;
+	}
+
 
 	public DriverDTO getDriver() {
 		return driver;
@@ -76,6 +114,26 @@ public class BoardDTO implements Serializable {
 		this.headCount = headCount;
 	}
 	
+
+
+
+
+
+	public BoardDTO(int driverId, int boardId, String arrival, String departure, String arrivalTime,
+			String departureTime, String carShareDate, int headCount, DriverDTO driver) {
+		super();
+		this.driverId = driverId;
+		this.boardId = boardId;
+		this.arrival = arrival;
+		this.departure = departure;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+		this.carShareDate = carShareDate;
+		this.headCount = headCount;
+		this.driver = driver;
+	}
+
+
 	public int getDriverId() {
 		return driverId;
 	}

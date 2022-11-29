@@ -27,12 +27,7 @@
 		FROM BOARD
 		WHERE BOARDID = #{boardId}
 	</select>
-
-	<select id="findLocationMatchingBoard" parameterType="map" resultType="Board">
-		SELECT BOARDID
-		FROM BOARD
-		WHERE ARRIVAL = arrival or DEPARTURE = departure
-	</select>
+	
 
 	<!-- board id로 board정보, driver 정보 가지고 오기 -->
 	<resultMap id="associationResultMap" type="BoardDTO">

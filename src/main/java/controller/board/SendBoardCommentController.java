@@ -32,7 +32,7 @@ public class SendBoardCommentController implements Controller{
 		request.setAttribute("commentList", list);
 		request.setCharacterEncoding("utf-8");
 		System.out.println(list);
-		return "/reservation/view.jsp";
+		return "/driver/m.jsp";
 	}
 
 }

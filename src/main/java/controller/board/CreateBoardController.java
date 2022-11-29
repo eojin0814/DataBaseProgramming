@@ -37,7 +37,7 @@ public class CreateBoardController implements Controller{
 			manager.createBoard(board);
 			
 	    	log.debug("Create board : {}", board);
-	        return "redirect:/driver";	// 성공 시 커뮤니티 리스트 화면으로 redirect
+	        return "/reservation/view.jsp";	// 성공 시 커뮤니티 리스트 화면으로 redirect
 	        
 		} catch (Exception e) {		// 예외 발생 시 입력 form으로 forwarding
           

@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import model.CustomerDTO;
+import model.DriverDTO;
 import model.Reservation;
 import model.ReservationDTO;
 import model.User;
@@ -58,15 +59,97 @@ public class BoardDao {
 //	
 	
 	//boardId통해서 boar정보와 driver정보 가지고 오기 - mybatis xml버전
-	public BoardDTO selectBoardDetailsByBoardID(int boardId) {
-		System.out.println("selectBoardDetailsByBoardID");
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			return (BoardDTO)sqlSession.selectOne(
-					namespace + ".selectBoardDetailsByBoardID", boardId);	
-		} finally {
-			sqlSession.close();
+//	public BoardDTO selectBoardDetailsByBoardID(int boardId) {
+//		System.out.println("selectBoardDetailsByBoardID");
+//		SqlSession sqlSession = sqlSessionFactory.openSession();
+//		try {
+//			return (BoardDTO)sqlSession.selectOne(
+//					namespace + ".selectBoardDetailsByBoardID", boardId);	
+//		} finally {
+//			sqlSession.close();
+//		}
+//	}
+	//드라이버 아이디로 등록한 보드들 리스트로 보여주기
+
+	public List<BoardDTO> showMyBoardsByDriverId(int driverId) {
+		System.out.println("showMyBoardsByDriverId - dao");
+		String sql = "select * from board where driverid=?";
+		Object[] param = new Object[] {driverId};				
+		for(Object o:param) {
+			System.out.println(o);
 		}
+		System.out.println(param);
+		jdbcUtil.setSqlAndParameters(sql, param);
+	
+		try {	
+			List<BoardDTO> list = new ArrayList<BoardDTO>();
+			ResultSet rs = jdbcUtil.executeQuery();	
+			
+			while(rs.next()) {
+				BoardDTO board = new BoardDTO(
+						rs.getInt("DRIVERID"),
+						rs.getInt("BOARDID"),
+						rs.getString("ARRIVAL"),
+						rs.getString("DEPARTURE"),
+						rs.getString("ARRIVALTIME"),
+						rs.getString("DEPARTURETIME"),
+						rs.getString("CARSHAREDATE"),
+						rs.getInt("HEADCOUNT"),
+						rs.getInt("CURRENTHEADCOUNT"),
+						rs.getInt("REALTIMESTATE")
+				);
+				
+				list.add(board);
+			}
+			System.out.println(list);
+			return list;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}
+		return null;	
+	}
+	
+	public BoardDTO selectBoardDetailsByBoardID(int boardId) {
+		System.out.println("selectBoardDetailsByBoardID - dao");
+		String sql = "SELECT b.BOARDID, b.DRIVERID, b.ARRIVAL, b.DEPARTURE, b.ARRIVALTIME, b.DEPARTURETIME, b.CARSHAREDATE, b.HEADCOUNT, d.DRIVERNAME, d.LICENSE, d.CARNUMBER FROM DRIVER d, BOARD b WHERE d.DRIVERID = b.DRIVERID AND b.BOARDID = ? ";		
+		Object[] param = new Object[] {boardId};				
+		for(Object o:param) {
+			System.out.println(o);
+		}
+		System.out.println(param);
+		jdbcUtil.setSqlAndParameters(sql, param);
+	
+		try {				
+			ResultSet rs = jdbcUtil.executeQuery();	
+			System.out.println(rs.next());
+			DriverDTO driver = new DriverDTO(
+					rs.getString("DRIVERNAME"),rs.getInt("LICENSE"),rs.getInt("CARNUMBER")
+					);
+			System.out.println(driver);
+			BoardDTO board = new BoardDTO(
+					rs.getInt("DRIVERID"),
+					rs.getString("ARRIVAL"),
+					rs.getString("DEPARTURE"),
+					rs.getString("ARRIVALTIME"),
+					rs.getString("DEPARTURETIME"),
+					rs.getString("CARSHAREDATE"),
+					rs.getInt("HEADCOUNT"),
+					driver
+					);
+			System.out.println(board);
+			return board;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}
+		return null;	
 	}
 	
 	public String findBoardByBoardId(int boardId) {
@@ -192,6 +275,8 @@ public class BoardDao {
 		}
 	}
 	
+	
+
 //	//이거 comment부분 이야기 해봐야됨
 //	public void updateUserComment(String comment, int boardId) {
 //		String sql = "UPDATE BOARD "

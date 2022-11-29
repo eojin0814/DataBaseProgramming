@@ -83,7 +83,6 @@ function createBoard(targetUri){
                 <!-- Side widgets-->
                 <div class="col-lg-4">
                 
-                    <!-- Search widget-->
                     <form name="frm" action="<c:url value='/driver/register/board'></c:url>">>
 	                    <div class="card mb-4">
 	                        <div class="card-header">
@@ -112,7 +111,7 @@ function createBoard(targetUri){
 	         
 	                                        <li><input type="text" class="input-field" placeholder="탑승가능 인원 수" name="headCount" required></li>
 	                                        <li><a href="#!">운전자 정보</a></li>
-	                                        <li><a href="#!">${board.driver }</a></li>
+	                                        <li><a href="#!">${board.getDriver().getDriverName() }</a></li>
 	                                    </ul>
 	                                </div>
 	                            </div>

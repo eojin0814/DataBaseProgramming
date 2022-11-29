@@ -27,7 +27,8 @@ public class RequestMapping {
 //    	mappings.put("/driver/list", new ForwardController("/driver/boardList.jsp"));
     	mappings.put("/driver/register/board/form", new ForwardController("/driver/registerBoard.jsp"));
     	mappings.put("/driver/register/board", new CreateBoardController());
-    	
+    	mappings.put("/driver/myBoards", new ShowBoardsController());
+    	mappings.put("/board/update", new UpdateBoardController());
     	//board 클릭시 넘어가는 예약페이지
     	mappings.put("/reservation/view/init",  new SetReservationDetails());
     	mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
