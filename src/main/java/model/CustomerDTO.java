@@ -6,6 +6,7 @@ import java.util.List;
 public class CustomerDTO {
 	
 	private int id;
+	private String strId;
 	private String name;
 	private int gender;
 	private int age;
@@ -13,13 +14,6 @@ public class CustomerDTO {
 	private String phone;
 	private String password;
 	private List<ReservationDTO> customerReservationInfo;
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -44,9 +38,9 @@ public class CustomerDTO {
 	}
 	
 	//password제외한 생성자 - 보여줘도 되는 나의 정보
-	public CustomerDTO(int id, String name, int gender, int age,int job, String phone) {
+	public CustomerDTO(String strId, String name, int gender, int age, int job, String phone) {
 		super();
-		this.id = id;
+		this.strId = strId;
 		this.name = name;
 		this.gender = gender;
 		this.age = age;
@@ -73,6 +67,12 @@ public class CustomerDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public String getStrId() {
+		return strId;
+	}
+	public void setstrId(String strId) {
+		this.strId = strId;
+	}
 	public String getName() {
 		return name;
 	}
@@ -82,7 +82,7 @@ public class CustomerDTO {
 	public int getGender() {
 		return gender;
 	}
-	public void setGender(int gentder) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 	public int getAge() {
@@ -117,5 +117,16 @@ public class CustomerDTO {
 				+ "]";
 	}
 	
+	//로그인 시 비밀번호 검사
+		public boolean matchPassword(String password) {
+			if (password == null) {
+				return false;
+			}
+			return this.password.equals(password);
+		}
+		
+		public boolean isSameUser(String strId) {
+	        return this.id.equals(strId);
+	    }
 	
 }
