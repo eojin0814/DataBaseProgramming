@@ -30,15 +30,14 @@ public class CreateBoardController implements Controller{
 			request.getParameter("departureTime"),
 			"2001/1/1",
 			Integer.parseInt(request.getParameter("headCount"))
-			);		
-        
+			);
     	System.out.println(board);
 		try {
 			BoardManager manager = BoardManager.getInstance();
 			manager.createBoard(board);
 			
 	    	log.debug("Create board : {}", board);
-	        return "redirect:/driver/register/board/form";	// 성공 시 커뮤니티 리스트 화면으로 redirect
+	        return "redirect:/driver";	// 성공 시 커뮤니티 리스트 화면으로 redirect
 	        
 		} catch (Exception e) {		// 예외 발생 시 입력 form으로 forwarding
           
