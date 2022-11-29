@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CustomerDTO {
 	
-	private int id;
+	private String id;
 	private String name;
 	private int gender;
 	private int age;
@@ -13,6 +13,8 @@ public class CustomerDTO {
 	private String phone;
 	private String password;
 	private List<ReservationDTO> customerReservationInfo;
+	
+	public CustomerDTO() {}
 	
 	//매칭을 위한 생성자
 	public CustomerDTO(int gender, int age, String job) {
@@ -23,7 +25,7 @@ public class CustomerDTO {
 	}
 	
 	//password포함 생성자 - 보여주면 안되는 나의 정보
-	public CustomerDTO(int id, String name, int gender, int age, String job, String phone, String password) {
+	public CustomerDTO(String id, String name, int gender, int age, String job, String phone, String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -35,7 +37,7 @@ public class CustomerDTO {
 	}
 	
 	//password제외한 생성자 - 보여줘도 되는 나의 정보
-	public CustomerDTO(int id, String name, int gender, int age, String job, String phone) {
+	public CustomerDTO(String id, String name, int gender, int age, String job, String phone) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -45,6 +47,14 @@ public class CustomerDTO {
 		this.phone = phone;
 	}
 	
+	public void update(CustomerDTO updateCus) {
+		 this.password = updateCus.password;
+	     this.name = updateCus.name;
+	     this.job = updateCus.job;
+	     this.phone = updateCus.phone;
+	     this.age = updateCus.age;
+	     
+	}
 	
 	public String getPassword() {
 		return password;
@@ -53,10 +63,10 @@ public class CustomerDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -68,7 +78,7 @@ public class CustomerDTO {
 	public int getGender() {
 		return gender;
 	}
-	public void setGender(int gentder) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 	public int getAge() {
@@ -95,4 +105,15 @@ public class CustomerDTO {
 	public void setCustomerReservationInfo(List<ReservationDTO> customerReservationInfo) {
 		this.customerReservationInfo = customerReservationInfo;
 	}
+	//로그인 시 비밀번호 검사
+	public boolean matchPassword(String password) {
+		if (password == null) {
+			return false;
+		}
+		return this.password.equals(password);
+	}
+	
+	public boolean isSameUser(String userid) {
+        return this.id.equals(userid);
+    }
 }

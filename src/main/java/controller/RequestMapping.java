@@ -25,9 +25,9 @@ public class RequestMapping {
     	mappings.put("/driver/register/board/form", new ForwardController("/driver/registerBoard.jsp"));
     	mappings.put("/driver/register/board", new CreateBoardController());
     	
-    	mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
+    	mappings.put("/customer/login/form", new ForwardController("/customer/joinForm.jsp"));
     	mappings.put("/customer/login", new CustomerLoginController());
-    	mappings.put("/customer/register/form",  new ForwardController("/customer/registerForm.jsp"));
+    	mappings.put("/customer/register/form",  new ForwardController("/customer/joinForm.jsp"));
     	mappings.put("/customer/register",  new RegisterCustomerController());
     	
 

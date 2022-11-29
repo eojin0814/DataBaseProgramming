@@ -20,7 +20,7 @@ public class RegisterCustomerController implements Controller{
 		 */
 		System.out.println("controller들어옴");
 	 	CustomerDTO customer = new CustomerDTO(
-				Integer.parseInt(request.getParameter("customerId")),
+				request.getParameter("customerId"),
 				request.getParameter("name"),
 				Integer.parseInt(request.getParameter("gender")),
 				Integer.parseInt(request.getParameter("age")),

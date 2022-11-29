@@ -54,7 +54,7 @@ private JDBCUtil jdbcUtil = null;
 	         }
 		return null;   
 	   } 
-	public List<CustomerDTO> proBaseMatching(ReservationDTO reservation, BoardDTO board, CustomerDTO customer, int customId) {//job, gender, age기반 추천매칭
+	public List<CustomerDTO> proBaseMatching(BoardDTO board, CustomerDTO customer, int customId) {//job, gender, age기반 추천매칭
         CustomerDTO cus = null;
         CustomerDTO cusFinal;
         List<CustomerDTO> cusList = null;
@@ -96,7 +96,7 @@ private JDBCUtil jdbcUtil = null;
               cusList = new ArrayList<CustomerDTO>(); 
               while (rs.next()) {   // 커서를 통해 한 행씩 fetch
                  cusFinal = new CustomerDTO(  // Employee 객체를 생성하고 생성자를 통해 컬럼 값 저장
-                       rs.getInt("id"),
+                       rs.getString("id"),
                        rs.getString("name"),
                        rs.getInt("gender"),
                        rs.getInt("age"),

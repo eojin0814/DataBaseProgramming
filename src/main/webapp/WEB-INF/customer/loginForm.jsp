@@ -12,7 +12,7 @@
 <input type="text" name="userId" placeholder="id">
 <input type="text" name="password" placeholder="password">
 <button type="submit">로그인</button>
-<a href="<c:url value='/customer/register' />" >회원 가입 </a>  
+<a href="<c:url value='/customer/register/form' />" >회원 가입 </a>  
 </form>
 </body>
 </html>
