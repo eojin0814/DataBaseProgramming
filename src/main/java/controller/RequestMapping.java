@@ -26,10 +26,15 @@ public class RequestMapping {
     	mappings.put("/driver/register/board/form", new ForwardController("/driver/registerBoard.jsp"));
     	mappings.put("/driver/register/board", new CreateBoardController());
     	
-    	mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
+    	mappings.put("/customer/login/form", new ForwardController("/customer/joinForm.jsp"));
     	mappings.put("/customer/login", new CustomerLoginController());
-    	mappings.put("/customer/register/form",  new ForwardController("/customer/registerForm.jsp"));
+    	mappings.put("/customer/register/form",  new ForwardController("/customer/joinForm.jsp"));
     	mappings.put("/customer/register",  new RegisterCustomerController());
+    	
+    	mappings.put("/driver/login/form", new ForwardController("/driver/driverJoinForm.jsp"));
+    	mappings.put("/driver/login", new CustomerLoginController());
+    	mappings.put("/driver/register/form",  new ForwardController("/driver/driverJoinForm.jsp"));
+    	mappings.put("/driver/register",  new RegisterCustomerController());
     	
 
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장

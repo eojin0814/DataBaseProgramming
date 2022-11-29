@@ -95,13 +95,16 @@ private JDBCUtil jdbcUtil = null;
               ResultSet rs = jdbcUtil.executeQuery();  
               cusList = new ArrayList<CustomerDTO>(); 
               while (rs.next()) {   // 커서를 통해 한 행씩 fetch
-                 cusFinal = new CustomerDTO(  // Employee 객체를 생성하고 생성자를 통해 컬럼 값 저장
-                       rs.getInt("id"),
+                 cusFinal = new CustomerDTO(  // 객체를 생성하고 생성자를 통해 컬럼 값 저장
+                       rs.getString("id"),
                        rs.getString("name"),
                        rs.getInt("gender"),
                        rs.getInt("age"),
                        rs.getString("job"),
-                       rs.getString("phone"));
+                       rs.getString("phone"),
+                       rs.getString("password"),
+                       rs.getString("info")
+                       );
                  cusList.add(cusFinal);
                  
                  }

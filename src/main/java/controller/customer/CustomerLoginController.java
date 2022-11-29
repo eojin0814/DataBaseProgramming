@@ -1,11 +1,19 @@
 package controller.customer;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.user.UserSessionUtils;
+import model.CustomerDTO;
+import model.dao.CustomerDAO;
+import model.service.CustomerManager;
 import model.service.UserManager;
 
 public class CustomerLoginController implements Controller{
@@ -35,5 +43,24 @@ public class CustomerLoginController implements Controller{
             return "/customer/loginForm.jsp";			
 		}
 	}
+	
+	//로그인 기능
+	   public CustomerDTO login_check(HttpServletRequest request, HttpServletResponse response) {
+	      request.setCharacterEncoding("UTF-8");
+	      CustomerDTO cdto = new CustomerDTO();//bean
+	      CustomerDAO cdao = new CustomerDAO();//mdao
+	      CustomerManager cmg = new CustomerManager();
+	      
+	      cdto.setId(request.getParameter("id"));
+	      cdto.setPassword(request.getParameter("password"));
+	        if (cmg.login(cdto.getId(), cdto.getPassword())) { // 로그인 성공 시
+	         //메인페이지로 이동
+	         } else { // 로그인 실패 시
+	           //로그인창으로 다시 이동
+	           }
+	           return cdto;
+	         }
 
 }
+
+

@@ -20,7 +20,8 @@ private JDBCUtil jdbcUtil = null;
 		String sql = "INSERT INTO DRIVER VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {driver.getName(), driver.getGender(), driver.getAge(), 
 				driver.getJob(), driver.getPhone(), driver.getPassword(), 
-				driver.getDriverId(), driver.getDriverId(), driver.getDriverStrId(), driver.getCarNumber(), driver.getLicense()};
+				driver.getDriverId(), driver.getDriverId(), driver.getDriverStrId(), 
+				driver.getCarNumber(), driver.getLicense(), driver.getInfo() };
 		
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 		
@@ -86,7 +87,7 @@ private JDBCUtil jdbcUtil = null;
 	 * 저장하여 반환.
 	 */
 	public DriverDTO findDriver(String driverStrId) throws SQLException {
-        String sql = "SELECT name=?, gender=?, age=?, job=?, phone=?, password=?, carNumber=?, license=? "
+        String sql = "SELECT name=?, gender=?, age=?, job=?, phone=?, password=?, carNumber=?, license=?, info=? "
         			+ "FROM DRIVER "
         			+ "WHERE driverStrId=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {driverStrId});	// JDBCUtil에 query문과 매개 변수 설정
@@ -103,7 +104,8 @@ private JDBCUtil jdbcUtil = null;
 					rs.getString("phone"),
 					rs.getString("password"),
 					rs.getString("carNumber"),
-					rs.getInt("license")
+					rs.getInt("license"),
+					rs.getString("info")
 					);
 				return driver;
 			}

@@ -1,17 +1,17 @@
 package model;
 
-import java.util.Date;
 import java.util.List;
 
 public class CustomerDTO {
 	
-	private int id;
+	private String id;
 	private String name;
 	private int gender;
 	private int age;
 	private String job;
 	private String phone;
 	private String password;
+	private String info;
 	private List<ReservationDTO> customerReservationInfo;
 	
 	//매칭을 위한 생성자
@@ -23,7 +23,7 @@ public class CustomerDTO {
 	}
 	
 	//password포함 생성자 - 보여주면 안되는 나의 정보
-	public CustomerDTO(int id, String name, int gender, int age, String job, String phone, String password) {
+	public CustomerDTO(String id, String name, int gender, int age, String job, String phone, String password, String info) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -32,10 +32,11 @@ public class CustomerDTO {
 		this.job = job;
 		this.phone = phone;
 		this.password = password;
+		this.info = info;
 	}
 	
 	//password제외한 생성자 - 보여줘도 되는 나의 정보
-	public CustomerDTO(int id, String name, int gender, int age, String job, String phone) {
+	public CustomerDTO(String id, String name, int gender, int age, String job, String phone, String info) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -43,9 +44,14 @@ public class CustomerDTO {
 		this.age = age;
 		this.job = job;
 		this.phone = phone;
+		this.info = info;
 	}
 	
 	
+	public CustomerDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -53,10 +59,10 @@ public class CustomerDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -88,7 +94,14 @@ public class CustomerDTO {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}	
+	public String getInfo() {
+		return info;
 	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
 	public List<ReservationDTO> getCustomerReservationInfo() {
 		return customerReservationInfo;
 	}

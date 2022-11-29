@@ -19,7 +19,7 @@ public class TestManager {
 	
 		Scanner scanner = new Scanner(System.in);
 		
-		CustomerDTO customer = new CustomerDTO(1,"seungji",0,22,"student","010-111");
+		CustomerDTO customer = new CustomerDTO("1","seungji",0,22,"student","010-111","뜽지입니다");
 		rd.create(0, customer);
 		
 		scanner.close();

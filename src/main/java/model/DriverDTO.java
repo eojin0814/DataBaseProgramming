@@ -9,6 +9,7 @@ public class DriverDTO {
 	private String job;
 	private String phone;
 	private String password;
+	private String info;
 	
 	//driver에만 있는 정보
 	private int driverId; //pk로 자동으로 생성되도록
@@ -26,7 +27,7 @@ public class DriverDTO {
 		
 	//전체 생성자
 	public DriverDTO(String name, int gender, int age, String job, String phone, String password, int driverId,
-			String driverStrId, String carNumber, int license) {
+			String driverStrId, String carNumber, int license, String info) {
 		super();
 		this.name = name;
 		this.gender = gender;
@@ -38,10 +39,11 @@ public class DriverDTO {
 		this.driverStrId = driverStrId;
 		this.carNumber = carNumber;
 		this.license = license;
+		this.info = info;
 	}
 		
 	//password, license 제외한 생성자 - 보여줘도 되는 나의 정보
-	public DriverDTO(String name, int gender, int age, String job, String phone, String driverStrId, String carNumber) {
+	public DriverDTO(String name, int gender, int age, String job, String phone, String driverStrId, String carNumber, String info) {
 		super();
 		this.name = name;
 		this.gender = gender;
@@ -50,9 +52,10 @@ public class DriverDTO {
 		this.phone = phone;
 		this.driverStrId = driverStrId; 
 		this.carNumber = carNumber;
+		this.info = info;
 	}
 	
-	public DriverDTO(String driverStrId, String name, int gender, int age, String job, String phone, String password, String carNumber, int license) {
+	public DriverDTO(String driverStrId, String name, int gender, int age, String job, String phone, String password, String carNumber, int license, String info) {
 		super();
 		this.driverStrId = driverStrId;
 		this.name = name;
@@ -63,8 +66,8 @@ public class DriverDTO {
 		this.password = password;
 		this.carNumber = carNumber;
 		this.license = license;
+		this.info = info;
 	}
-		
 	
 	public String getName() {
 		return name;
@@ -136,7 +139,14 @@ public class DriverDTO {
 	public void setLicense(int license) {
 		this.license = license;
 	}
-	
+		
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
 	/* 비밀번호 검사 */
 	public boolean matchPassword(String password) {
 		if (password == null) {
@@ -148,6 +158,8 @@ public class DriverDTO {
 	public boolean isSameDriver(String driverStrid) {
         return this.driverStrId.equals(driverStrid);
     }
+
+
 
 //안 필요할 거 같음
 //	@Override

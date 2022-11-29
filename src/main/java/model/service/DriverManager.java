@@ -17,7 +17,7 @@ public class DriverManager {
 	private static DriverManager driverMan = new DriverManager();
 	private DriverDAO driverDAO;
 
-	private DriverManager() {
+	public DriverManager() {
 		try {
 			driverDAO = new DriverDAO();
 		} catch (Exception e) {

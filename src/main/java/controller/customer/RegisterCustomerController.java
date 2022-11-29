@@ -20,13 +20,14 @@ public class RegisterCustomerController implements Controller{
 		 */
 		System.out.println("controller들어옴");
 	 	CustomerDTO customer = new CustomerDTO(
-				Integer.parseInt(request.getParameter("customerId")),
+				request.getParameter("id"),
 				request.getParameter("name"),
 				Integer.parseInt(request.getParameter("gender")),
 				Integer.parseInt(request.getParameter("age")),
 				request.getParameter("job"),
 				request.getParameter("phone"),
-				request.getParameter("password"));
+				request.getParameter("password"),
+				request.getParameter("info"));
 			
 	       try {
 				CustomerManager customerMan = CustomerManager.getInstance();

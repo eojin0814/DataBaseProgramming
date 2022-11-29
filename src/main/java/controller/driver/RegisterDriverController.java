@@ -23,7 +23,8 @@ public class RegisterDriverController implements Controller {
 			Integer.parseInt(request.getParameter("driverId")),
 			request.getParameter("driverStrId"),
 			request.getParameter("carNumber"),
-			Integer.parseInt(request.getParameter("license")));
+			Integer.parseInt(request.getParameter("license")),
+			request.getParameter("info"));
 
 		try {
 			DriverManager manager = DriverManager.getInstance();
