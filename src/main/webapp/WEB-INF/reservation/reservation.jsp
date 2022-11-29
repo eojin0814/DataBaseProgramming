@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
+<meta charset="EUC-KR">
     <meta charset="utf-8">
     <title>BizConsult - Consulting HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -23,14 +25,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <script>$("#exampleTable").DataTable({
 
         "serverSide": true,
@@ -51,20 +53,31 @@
         ]
 
     });</script>
+    <script type="text/javascript">
+										  $(document).ready(function(){
+										    var rows = document.getElementById("reservationBody").getElementsByTagName("tr");
+										    console.log(rows.length);	// tbody tr ∞≥ºˆ = 2
+											
+										    // tr∏∏≈≠ ∑Á«¡µπ∏Èº≠ ƒ√∑≥∞™ ¡¢±Ÿ
+										    for( var r=0; r<rows.length; r++ ){
+										      var cells = rows[r].getElementsByTagName("td");
+										
+										      var cell_1 = cells[0].firstChild.data;		// ¿Ã∏ß
+										      var cell_2 = cells[1].firstChild.data;		// ≥™¿Ã
+										      var cell_3 = cells[3].firstChild.data;		// º∫∫∞
+										      var cell_4 = cells[4].firstChild.data;		// º∫∫∞
+										      var cell_5 = cells[5].firstChild.data;		// º∫∫∞
+										      var cell_6 = cells[6].firstChild.data;		// º∫∫∞
+										
+										      console.log(cell_1);	// »´±Êµø, ±Ëøµ»Ò
+										      console.log(cell_2);	// 23, 25
+										      console.log(cell_3);	// ≥≤¿⁄,ø©¿⁄
+										    }
+										  });
+										</script>
 </head>
-
 <body>
-    <div class="container-xxl bg-white p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
 
-
-        <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="index.html" class="navbar-brand p-0">
@@ -75,15 +88,15 @@
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link active">Service</a>
+                   <div class="navbar-nav ms-auto py-0">
+                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="about.html" class="nav-item nav-link">≥ª ƒ´«√</a>
+                        <a href="<c:url value='/customer/reservation/Info'/>" class="nav-item nav-link">øπæ‡ ¡§∫∏</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="feature.html" class="dropdown-item">Features</a>
-                                <a href="quote.html" class="dropdown-item">Free Quote</a>
+                                <a href="feature.html" class="dropdown-item">≥ª √§∆√</a>
+                                <a href="quote.html" class="dropdown-item">∏∂¿Ã∆‰¿Ã¡ˆ</a>
                                 <a href="team.html" class="dropdown-item">Our Team</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
@@ -91,13 +104,13 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">Free Quote</a>
+                    <a href=" <c:url value='/customer/login/form'/>" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">∑Œ±◊¿Œ</a>
                 </div>
             </nav>
 
             <div class="container-xxl bg-primary page-header">
                 <div class="container text-center">
-                    <h1 class="text-white animated zoomIn mb-3">ÎÇ¥ ÏòàÏïΩÏ†ïÎ≥¥</h1>
+                    <h1 class="text-white animated zoomIn mb-3">≥ª øπæ‡¡§∫∏</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
@@ -109,201 +122,93 @@
             </div>
         </div>
         <!-- Navbar & Hero End -->
-
-<div id="layoutSidenav_content">
+    
+		<div class="container-xxl py-6">
+			<div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">ÎÇ¥ ÏòàÏïΩ</h1>
+                        <h1 class="mt-4">≥ª øπæ‡</h1>
                    
                         <div class="card mb-4">
                             <div class="card-body">
-                               ÌôïÏ†ïÎêú ÏòàÏïΩÍ≥º ÎåÄÍ∏∞ Ï§ëÏù∏ ÏòàÏïΩÏùÑ ÌôïÏù∏Ìï† Ïàò ÏûàÏäµÎãàÎã§
+                               »Æ¡§µ» øπæ‡∞˙ ¥Î±‚ ¡ﬂ¿Œ øπæ‡¿ª »Æ¿Œ«“ ºˆ ¿÷Ω¿¥œ¥Ÿ
                                
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                ÌôïÏ†ïÎêú ÏòàÏïΩ
+                                »Æ¡§µ» øπæ‡
                             </div>
+                            			
                             <div class="card-body">
                                 <table  id="exampleTable" class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>driver</th>
                                             <th>Position</th>
-                                            <th>Ï∂úÎ∞úÏãúÍ∞Ñ</th>
-                                            <th>ÎèÑÏ∞©ÏãúÍ∞Ñ</th>
+                                            <th>√‚πﬂΩ√∞£</th>
+                                            <th>µµ¬¯Ω√∞£</th>
                                             <th>date</th>
-                                            <th>ÏòàÏïΩÏÉÅÌÉú</th>
+                                       
                                         </tr>
                                     </thead>
 
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                              
-                                        <tr>
-                                            <td>Herrod Chandler</td>
-                                            <td>Sales Assistant</td>
-                                            <td>San Francisco</td>
-                                            <td>59</td>
-                                            <td>2012/08/06</td>
-                                            <td>$137,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rhona Davidson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>Tokyo</td>
-                                            <td>55</td>
-                                            <td>2010/10/14</td>
-                                            <td>$327,900</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colleen Hurst</td>
-                                            <td>Javascript Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>39</td>
-                                            <td>2009/09/15</td>
-                                            <td>$205,500</td>
-                                        </tr>
-          
-                                        <tr>
-                                            <td>Jennifer Acosta</td>
-                                            <td>Junior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>43</td>
-                                            <td>2013/02/01</td>
-                                            <td>$75,650</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06</td>
-                                            <td>$145,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hermione Butler</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2011/03/21</td>
-                                            <td>$356,250</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lael Greer</td>
-                                            <td>Systems Administrator</td>
-                                            <td>London</td>
-                                            <td>21</td>
-                                            <td>2009/02/27</td>
-                                            <td>$103,500</td>
-                                        </tr>
-                                       
-                                    </tbody>
+							    <tbody> 
+									<c:forEach var="ConfirmReservation" items="${ConfirmReservation}">  			  	
+								  	    <tr>
+										  <td>
+										  	${ConfirmReservation.arrival} -> ${ConfirmReservation.departure}    
+										  </td>
+										  <td>
+											 ${ConfirmReservation.arrivalTime}
+										  </td>
+										  <td>
+										     ${ConfirmReservation.departureTime}
+										  </td>
+										  <td>
+											${ConfirmReservation.date}
+										  </td>
+										</tr>
+									 </c:forEach> 
+								  </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                ÎåÄÍ∏∞ Ï§ë ÏòàÏïΩ
+                                ¥Î±‚ ¡ﬂ øπæ‡
                             </div>
                             <div class="card-body">
                                 <table  id="exampleTable" class="table table-bordered">
                                     <thead>
                                         <tr>
-                                           <th>driver</th>
                                             <th>Position</th>
-                                            <th>Ï∂úÎ∞úÏãúÍ∞Ñ</th>
-                                            <th>ÎèÑÏ∞©ÏãúÍ∞Ñ</th>
+                                            <th>√‚πﬂΩ√∞£</th>
+                                            <th>µµ¬¯Ω√∞£</th>
                                             <th>date</th>
-                                            <th>ÏòàÏïΩÏÉÅÌÉú</th>
+                                       
                                         </tr>
                                     </thead>
 
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                 
-                                        <tr>
-                                            <td>Hermione Butler</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2011/03/21</td>
-                                            <td>$356,250</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lael Greer</td>
-                                            <td>Systems Administrator</td>
-                                            <td>London</td>
-                                            <td>21</td>
-                                            <td>2009/02/27</td>
-                                            <td>$103,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jonas Alexander</td>
-                                            <td>Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>30</td>
-                                            <td>2010/07/14</td>
-                                            <td>$86,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shad Decker</td>
-                                            <td>Regional Director</td>
-                                            <td>Edinburgh</td>
-                                            <td>51</td>
-                                            <td>2008/11/13</td>
-                                            <td>$183,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michael Bruce</td>
-                                            <td>Javascript Developer</td>
-                                            <td>Singapore</td>
-                                            <td>29</td>
-                                            <td>2011/06/27</td>
-                                            <td>$183,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
-                                        </tr>
-                                    </tbody>
+							    <tbody> 
+									<c:forEach var="WaitReservation" items="${WaitReservation}">  			  	
+								  	    <tr>
+										  <td>
+										  	${WaitReservation.arrival} -> ${WaitReservation.departure}    
+										  </td>
+										  <td>
+											 ${WaitReservation.arrivalTime}
+										  </td>
+										  <td>
+										     ${WaitReservation.departureTime}
+										  </td>
+										  <td>
+											${WaitReservation.date}
+										  </td>
+										</tr>
+									 </c:forEach> 
+								  </tbody>
                                 </table>
                             </div>
                         </div>
@@ -323,6 +228,7 @@
                 </footer>
             </div>
         </div>
+       </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
@@ -378,7 +284,7 @@
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
 							
-							<!--/*** This template is free as long as you keep the footer author‚Äôs credit link/attribution link/backlink. If you'd like to use the template without the footer author‚Äôs credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							<!--/*** This template is free as long as you keep the footer author°Øs credit link/attribution link/backlink. If you'd like to use the template without the footer author°Øs credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
 							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
                             <br>Distributed By: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
                         </div>
@@ -412,5 +318,4 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-
 </html>

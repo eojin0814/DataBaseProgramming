@@ -19,8 +19,9 @@ private static MatchingDAO matchingDao = new MatchingDAO();
 		
 		System.out.println("CommentSessionRepositoryTest ends...");
 
-		selectBoardDetailsByBoardID(1);
+//		selectBoardDetailsByBoardID(1);
 //		findBoardByBoardId(1);
+		
 	}
 
 	

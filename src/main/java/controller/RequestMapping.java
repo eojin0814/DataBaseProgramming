@@ -10,6 +10,7 @@ import controller.board.*;
 import controller.comm.*;
 import controller.customer.CustomerLoginController;
 import controller.customer.RegisterCustomerController;
+import controller.matching.MatchingLocationController;
 import controller.reservation.SetReservationDetails;
 
 public class RequestMapping {
@@ -31,11 +32,18 @@ public class RequestMapping {
     	mappings.put("/board/update", new UpdateBoardController());
     	//board 클릭시 넘어가는 예약페이지
     	mappings.put("/reservation/view/init",  new SetReservationDetails());
+    	
     	mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
     	mappings.put("/customer/login", new CustomerLoginController());
     	mappings.put("/customer/register/form",  new ForwardController("/customer/registerForm.jsp"));
     	mappings.put("/customer/register",  new RegisterCustomerController());
     	
+    	//reservation
+    	mappings.put("/customer/reservation/Info", new ForwardController("/reservation/reservation.jsp"));
+    	//로케이션 포워드 
+    	mappings.put("/customer/locationMatching/Info", new ForwardController("/LocationMatching.jsp"));
+    	//로케이션 매칭 페이지 이동
+    	mappings.put("/customer/LocationMatching", new MatchingLocationController());
     	//board에 댓글 단거 처리하기
     	mappings.put("/board/comment", new SendBoardCommentController());
 

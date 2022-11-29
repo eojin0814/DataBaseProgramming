@@ -11,14 +11,24 @@ import controller.Controller;
 import controller.user.DeleteUserController;
 import controller.user.UserSessionUtils;
 import model.User;
+import model.service.ReservationManager;
 import model.service.UserManager;
 
-//customer가 해당 board를 신청하였을 경우 파라미터 값으로 board id를 넘겨받는다 manager를 통해서 reservationDao.signup(board id)
-public class ReservationBoardController implements Controller {
+public class ReservationCreateController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+			
+			int boardId =Integer.parseInt(request.getParameter("boardId"));
+			int userId = Integer.parseInt(UserSessionUtils.getLoginUserId(request.getSession()));
+			// 유저 찐 아이디 인지 유저 걍 아이디인지 일단은 찐 아이디로 함
+			
+			ReservationManager manager = ReservationManager.getInstance();
+			manager.createReservation(boardId,userId);
+				
+		    
+		    return "redirect:/community/list";	
+		
 	}
 }

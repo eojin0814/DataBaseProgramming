@@ -44,18 +44,37 @@ public class MatchingDAO {
 	}
 	
 		
-	public List<Board> FindLocationMatching(Map<String, String> loc) {//위치를 검색했을때 같은 목적지 가진 보드 출력
+	public List<Board> FindLocationMatching(String arrival,String depature) {
+		//위치를 검색했을때 같은 목적지 가진 보드 출력
 	    // 도착지 또는 출발지가 같은 경우 
 		// 경유지가 포함되는 경우 
-		
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		
-		try {
-			return sqlSession.selectList(
-					namespace + ".findLocationMatchingBoard", loc);			
-		} finally {
-			sqlSession.close();
-		}
+		List<Board> boardList = new ArrayList<Board>();
+        Board board = null;
+        
+		String sql = "SELECT DRIVERID, ARRIVAL, DEPARTURE, ARRIVALTIME, DEPARTURETIME,  CARSHAREDATE, HEADCOUNT, CURRENTHEADCOUNT   "
+	              + "FROM BOARD "
+	               + "WHERE ARRIVAL = ? or DEPARTURE = ? ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[]{arrival,depature});  
+		 try {      
+	            ResultSet rs = jdbcUtil.executeQuery();
+	            while (rs.next()) {   
+	                   board = new Board( 
+	                         rs.getInt("driverId"),
+	                         rs.getString("arrival"),
+	                         rs.getString("departure"),
+	                         rs.getString("arrivalTime"),
+	                         rs.getString("departureTime"),
+	                         rs.getString("carShareDate"),
+	                         rs.getInt("headCount"),
+	                         rs.getInt("currentheadcount"));
+	                   boardList.add(board);
+	                  }
+	          } catch (Exception ex) {
+	              ex.printStackTrace();
+	          } finally {
+	              jdbcUtil.close();    
+	          }
+		return boardList;
 	   } 
 	public List<Board> FindBasicMatching(String userId) {//job, gender, age기반 추천매칭
 		

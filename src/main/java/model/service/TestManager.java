@@ -19,9 +19,12 @@ public class TestManager {
 	
 		Scanner scanner = new Scanner(System.in);
 		
-		CustomerDTO customer = new CustomerDTO(1,"seungji",0,22,1,"010-111");
-		rd.create(0, customer);
+		//CustomerDTO customer = new CustomerDTO(1,"seungji",0,22,1,"010-111");
+		//rd.create(0, customer);
 		
+		rd.confirmReservation(1);
+		rd.waitReservation(1);
+		System.out.print(rd.waitReservation(1));
 		scanner.close();
 	}
 		
