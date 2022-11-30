@@ -60,6 +60,25 @@ public class BoardManager {
 		return boardDao.findCommentByBoardId(boardId);
 	}
 	
+	//댓글 달고 나서 update하는거
+	public List<CommentDTO>  updateComment (int customerId, int boardId, String details) throws SQLException, ExistingUserException {
+		System.out.println("Manager - updateComment");
+		try {
+			//삽입 먼저 해줘야한다
+			boardDao.insertComment(customerId, boardId, details);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return boardDao.findCommentByBoardId(boardId);
+	}
 
+	//드라이버 아이디로 등록한 보드들 보여주기
+	public List<BoardDTO> showMyBoardsByDriverId(int driverId){
+		System.out.println("Manager - showMyBoardsByDriverId : " + driverId);
+		List<BoardDTO> listBoard = boardDao.showMyBoardsByDriverId(driverId);
+		
+		return listBoard;
+	}
 
 }

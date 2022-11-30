@@ -22,6 +22,18 @@ public class Board implements Serializable {
 		super();
 		this.boardId = boardId;
 	}
+	
+
+	/**
+	 * @param arrival
+	 * @param departure
+	 */
+	public Board(String arrival, String departure) {
+		super();
+		this.arrival = arrival;
+		this.departure = departure;
+	}
+
 
 	//매칭을 위한 보드를 가져오는 생성자 
 	public Board(int driverId, String arrival, String departure, String arrivalTime, String departureTime,

@@ -8,12 +8,12 @@ public class ReservationDTO {
 	private String departureTime;
 	private int state;
 	private int reservationId;
+	private String date;
 	
 	public ReservationDTO(int resetvationId) 
 	{
 		this.reservationId = resetvationId;
 	}
-	
 	
 	public ReservationDTO(int driverId, String arrival, String departure, String arrivalTime, String departureTime,
 			int state, int resetvationId) {
@@ -26,7 +26,32 @@ public class ReservationDTO {
 		this.state = state;
 		this.reservationId = resetvationId;
 	}
+
 	
+	/**
+	 * @param driverId
+	 * @param arrival
+	 * @param departure
+	 * @param arrivalTime
+	 * @param departureTime
+	 * @param state
+	 * @param reservationId
+	 * @param date
+	 */
+	public ReservationDTO(int driverId, String arrival, String departure, String arrivalTime, String departureTime,
+			int state, int reservationId, String date) {
+		super();
+		this.driverId = driverId;
+		this.arrival = arrival;
+		this.departure = departure;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+		this.state = state;
+		this.reservationId = reservationId;
+		this.date = date;
+	}
+
+
 	public int getDriverId() {
 		return driverId;
 	}
@@ -72,4 +97,15 @@ public class ReservationDTO {
 	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
 	}
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 }

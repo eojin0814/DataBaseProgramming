@@ -4,7 +4,7 @@
 	<!-- 현재 폴더 경로와 일치한다 -->
 <mapper namespace="repository.mybatis.mapper.BoardMapper">
 	<cache />
-
+<!--
 	<sql id="BaseColumns">
 		DRIVERID AS driverId,
 		BOARDID AS boardId,
@@ -31,9 +31,9 @@
 	<select id="findLocationMatchingBoard" parameterType="map" resultType="Board">
 		SELECT BOARDID
 		FROM BOARD
-		WHERE ARRIVAL = arrival or DEPARTURE = departure
+		WHERE ARRIVAL = #{arrival,jdbcType=String} or DEPARTURE = #{departure,jdbcType=String}
 	</select>
-
+	
 	<!-- board id로 board정보, driver 정보 가지고 오기 -->
 	<resultMap id="associationResultMap" type="BoardDTO">
 		<id column="BOARDID" jdbcType="NUMERIC" property="boardId" />
@@ -66,4 +66,5 @@
 		FROM DRIVER d, BOARD b
 		WHERE d.DRIVERID = b.DRIVERID AND b.BOARDID = #{boardId} 
 	</select>
+-->
 </mapper>
