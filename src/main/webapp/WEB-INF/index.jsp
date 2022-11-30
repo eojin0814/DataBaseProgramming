@@ -26,9 +26,9 @@ function LocationMatching() {
       form.arrival.focus();
       return false;
    } 
-   if (form.depature.value == "") {
-      alert("depatrure");
-      form.depature.focus();
+   if (form.departure.value == "") {
+      alert("departure");
+      form.departure.focus();
       return false;
    }   
    form.submit();
@@ -188,7 +188,7 @@ const swiper = new Swiper('.swiper', {
 
 								<div class="col-md-6 col-lg-3">
 									<input type="text" name="departure" id="departure" class="form-control border-0 py-3"
-										placeholder="depature">
+										placeholder="departure">
 								</div>
 
 								<div class="col-md-2">
@@ -201,28 +201,7 @@ const swiper = new Swiper('.swiper', {
 			</form>
 		</div>
 		
-		
-		<div class="swiper">
-		  <!-- Additional required wrapper -->
-		  <div class="swiper-wrapper">
-		    <!-- Slides -->
-		    <div class="swiper-slide">Slide 1</div>
-		    <div class="swiper-slide">Slide 2</div>
-		    <div class="swiper-slide">Slide 3</div>
-		    ...
-		  </div>
-		  <!-- If we need pagination -->
-		  <div class="swiper-pagination"></div>
-		
-		  <!-- If we need navigation buttons -->
-		  <div class="swiper-button-prev"></div>
-		  <div class="swiper-button-next"></div>
-		
-		  <!-- If we need scrollbar -->
-		  <div class="swiper-scrollbar"></div>
-		</div>
-		
-		
+
 		
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -297,9 +276,7 @@ const swiper = new Swiper('.swiper', {
 			</div>
 		</div>
 
-                        <div class="col-md-2">
-                           <input type="button" class="btn btn-dark border-0 w-100 py-3" value="Search" onClick="LocationMatching()">
-                        </div>
+                  
                      </ol>
                   </nav>
                </div>

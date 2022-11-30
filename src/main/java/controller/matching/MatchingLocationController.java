@@ -30,12 +30,12 @@ public class MatchingLocationController implements Controller {
 		 	List<Board> boardList = null;
 	    	MatchingManager manager = MatchingManager.getInstance();
 			String arrival = request.getParameter("arrival");
-			String depature = request.getParameter("departure");
+			String departure = request.getParameter("departure");
 			System.out.println(arrival);
-			System.out.println(depature);
+			System.out.println(departure);
 			//Map<String, String> loc = new HashMap<String, String>();
 			//loc.put(arrival, depature);
-			boardList = manager.findLocationBoardList(arrival,depature);
+			boardList = manager.findLocationBoardList(arrival,departure);
 			// commList 객체를 request에 저장하여 커뮤니티 리스트 화면으로 이동(forwarding)
 			request.setAttribute("boardList", boardList);				
 			return "/LocationMatching.jsp";         
