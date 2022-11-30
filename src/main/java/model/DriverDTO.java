@@ -19,29 +19,21 @@ public class DriverDTO implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "DriverDTO [carNumber=" + carNumber + ", license=" + license + ", driverName=" + driverName + "]";
+		return "DriverDTO [carNumber=" + carNumber + ", license=" + license + ", name=" + name + "]";
 	}
 
-	public DriverDTO(String driverName,int license, int carNumber) {
+	public DriverDTO(String name, int license, int carNumber) {
 		super();
 		this.carNumber = carNumber;
 		this.license = license;
-		this.driverName = driverName;
+		this.name = name;
 	}
 	//driver에만 있는 정보
 	private int driverId; //pk로 자동으로 생성되도록
 	private String driverStrId; //실제 사용자가 로그인 할 때 입력하는 아이디
 	private int carNumber;
 	private int license;
-	private String driverName;
 	
-	public String getDriverName() {
-		return driverName;
-	}
-
-	public void setDriverName(String driverName) {
-		this.driverName = driverName;
-	}
 
 	public DriverDTO() {
 		super();
@@ -105,6 +97,11 @@ public class DriverDTO implements Serializable{
 		this.license = license;
 	}
 		
+
+	public DriverDTO(String name, int gender, int age, String parameter2, String parameter3,
+			String parameter4, int parseInt3, String parameter5, String parameter6, int parseInt4) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getDriverId() {
 		return driverId;
