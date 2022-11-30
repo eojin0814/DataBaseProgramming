@@ -13,7 +13,7 @@ public class DriverDTO implements Serializable{
 	private String name;
 	private int gender;
 	private int age;
-	private String job;
+	private int job;
 	private String phone;
 	private String password;
 	
@@ -46,9 +46,18 @@ public class DriverDTO implements Serializable{
 	public DriverDTO() {
 		super();
 	}
+	
+
+	/**
+	 * @param driverId
+	 */
+	public DriverDTO(int driverId) {
+		super();
+		this.driverId = driverId;
+	}
 
 	//매칭을 위한 생성자
-	public DriverDTO(int gender, int age, String job) {
+	public DriverDTO(int gender, int age, int job) {
 		super();
 		this.gender = gender;
 		this.age = age;
@@ -56,7 +65,7 @@ public class DriverDTO implements Serializable{
 	}
 		
 	//전체 생성자
-	public DriverDTO(String name, int gender, int age, String job, String phone, String password, int driverId,
+	public DriverDTO(String name, int gender, int age, int job, String phone, String password, int driverId,
 			String driverStrId, int carNumber, int license) {
 		super();
 		this.name = name;
@@ -72,7 +81,7 @@ public class DriverDTO implements Serializable{
 	}
 		
 	//password, license 제외한 생성자 - 보여줘도 되는 나의 정보
-	public DriverDTO(String name, int gender, int age, String job, String phone, String driverStrId, int carNumber) {
+	public DriverDTO(String name, int gender, int age, int job, String phone, String driverStrId, int carNumber) {
 		super();
 		this.name = name;
 		this.gender = gender;
@@ -83,7 +92,7 @@ public class DriverDTO implements Serializable{
 		this.carNumber = carNumber;
 	}
 	
-	public DriverDTO(String driverStrId, String name, int gender, int age, String job, String phone, String password, int carNumber, int license) {
+	public DriverDTO(String driverStrId, String name, int gender, int age, int job, String phone, String password, int carNumber, int license) {
 		super();
 		this.driverStrId = driverStrId;
 		this.name = name;
@@ -96,7 +105,7 @@ public class DriverDTO implements Serializable{
 		this.license = license;
 	}
 		
-	
+
 	public int getDriverId() {
 		return driverId;
 	}
@@ -147,10 +156,10 @@ public class DriverDTO implements Serializable{
 		this.age = age;
 	}
 
-	public String getJob() {
+	public int getJob() {
 		return job;
 	}
-	public void setJob(String job) {
+	public void setJob(int job) {
 		this.job = job;
 	}
 

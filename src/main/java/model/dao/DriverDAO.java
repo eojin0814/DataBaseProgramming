@@ -99,10 +99,10 @@ private JDBCUtil jdbcUtil = null;
 					rs.getString("name"),
 					rs.getInt("gender"),
 					rs.getInt("age"),
-					rs.getString("job"),
+					rs.getInt("job"),
 					rs.getString("phone"),
 					rs.getString("password"),
-					rs.getString("carNumber"),
+					rs.getInt("carNumber"),
 					rs.getInt("license")
 					);
 				return driver;
