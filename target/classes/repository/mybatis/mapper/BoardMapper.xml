@@ -36,11 +36,7 @@
 		SELECT BOARDID
 		FROM BOARD
 		WHERE ARRIVAL = #{arrival,jdbcType=String} or DEPARTURE = #{departure,jdbcType=String}
-<<<<<<< HEAD
 	</select>
-=======
-	</select>-->
->>>>>>> 1d68c10c4c98223c5f6712a2241b7c470647bb8f
 
 
 	board id로 board정보, driver 정보 가지고 오기
