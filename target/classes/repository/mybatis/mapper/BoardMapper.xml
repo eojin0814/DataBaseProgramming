@@ -37,7 +37,11 @@
 		FROM BOARD
 		WHERE ARRIVAL = #{arrival,jdbcType=String} or DEPARTURE = #{departure,jdbcType=String}
 	</select>-->
+<<<<<<< HEAD
 >>>>>>> origin/main
+=======
+
+>>>>>>> 9bdd2c69e691131cddad16ff59f43627568f6a86
 
 	<!-- board id로 board정보, driver 정보 가지고 오기 -->
 	<resultMap id="associationResultMap" type="BoardDTO">
@@ -71,6 +75,10 @@
 		FROM DRIVER d, BOARD b
 		WHERE d.DRIVERID = b.DRIVERID AND b.BOARDID = #{boardId} 
 	</select>
+<<<<<<< HEAD
 	</select> 
+=======
+	
+>>>>>>> 9bdd2c69e691131cddad16ff59f43627568f6a86
 
 </mapper>
