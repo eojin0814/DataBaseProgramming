@@ -16,9 +16,6 @@
 }
 </style>
 <script>
-function register(targetUri){   
-  window.location.href = targetUri;
-}
 function LocationMatching() {
 
    if (form.arrival.value == "") {
@@ -26,36 +23,14 @@ function LocationMatching() {
       form.arrival.focus();
       return false;
    } 
-   if (form.departure.value == "") {
-      alert("departure");
-      form.departure.focus();
+   if (form.depature.value == "") {
+      alert("depature");
+      form.depature.focus();
       return false;
    }   
    form.submit();
 }
 const swiper = new Swiper('.swiper', {
-
-	  // Optional parameters
-	  direction: 'vertical',
-	  loop: true,
-
-	  // If we need pagination
-	  pagination: {
-	    el: '.swiper-pagination',
-	  },
-
-	  // Navigation arrows
-	  navigation: {
-	    nextEl: '.swiper-button-next',
-	    prevEl: '.swiper-button-prev',
-	  },
-
-	  // And if we need scrollbar
-	  scrollbar: {
-	    el: '.swiper-scrollbar',
-	  },
-	});
-
      // Optional parameters
      direction: 'vertical',
      loop: true,
@@ -76,7 +51,11 @@ const swiper = new Swiper('.swiper', {
        el: '.swiper-scrollbar',
      },
    });
-
+   
+function register(targetUri){   
+	alert(targetUri);
+	  window.location.href = targetUri;
+	}
 </script>
 <meta charset="utf-8">
 
@@ -167,116 +146,35 @@ const swiper = new Swiper('.swiper', {
                            href="404.html" class="dropdown-item">404 Page</a>
                      </div>
                   </div>
-                  <a href="contact.html" class="nav-item nav-link">Contact</a>
-               </div>
-               <a href=" <c:url value='/customer/login/form'/>"
-                  class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">로그인</a>
+                 <a href="<c:url value='/driver/myBoards'>
+						      <c:param name='driverId' value='10'/>
+						   </c:url>" class="nav-item nav-link">내 차량</a>
+                    </div>
+                    <a href=" <c:url value='/customer/login/form'/>" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">로그인</a>
+                
             </div>
          </nav>
 
 
          <form name="form" method="POST" action="<c:url value='/customer/LocationMatching'/>">
-				<div class="container-xxl bg-primary page-header">
-					<div class="container text-center">
-						<h1 class="text-white animated zoomIn mb-3">어디로 갈까 ?</h1>
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb justify-content-center">
-								<div class="col-md-6 col-lg-3">
-									<input type="text" name="arrival" id="arrival" class="form-control border-0 py-3"
-										placeholder="arrival">
-								</div>
+            <div class="container-xxl bg-primary page-header">
+               <div class="container text-center">
+                  <h1 class="text-white animated zoomIn mb-3">어디로 갈까 ?</h1>
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb justify-content-center">
+                        <div class="col-md-6 col-lg-3">
+                           <input type="text" name="arrival" id="arrival" class="form-control border-0 py-3"
+                              placeholder="arrival">
+                        </div>
 
-								<div class="col-md-6 col-lg-3">
-									<input type="text" name="departure" id="departure" class="form-control border-0 py-3"
-										placeholder="departure">
-								</div>
+                        <div class="col-md-6 col-lg-3">
+                           <input type="text" name="depature" id="depature" class="form-control border-0 py-3"
+                              placeholder="depature">
+                        </div>
 
-								<div class="col-md-2">
-									<input type="button" class="btn btn-dark border-0 w-100 py-3" value="Search" onClick="LocationMatching()">
-								</div>
-							</ol>
-						</nav>
-					</div>
-				</div>
-			</form>
-		</div>
-		
-
-		
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-		  <script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
-		  <script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-		  <script>
-		    $('.carousel').carousel({
-		      interval: 2000 //기본 5초
-		    })
-		  </script>
-		  
-		  
-		<div class="container-xxl py-6 bg-white">
-			<div class="container bg-white">
-				<h2>타조 추천</h2>
-			</div>
-			
-			<div id='ex1' class="carousel slide" data-bs-ride="carousel" > 
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-					      <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
-						  <span>출발시간 : ${board.departureTime}</span>
-						  <span>도착시간 : ${board.arrivalTime}</span>
-						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
-					</div>
-					<div class="carousel-item">
-      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
-						  <span>출발시간 : ${board.departureTime}</span>
-						  <span>도착시간 : ${board.arrivalTime}</span>
-						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
-    				</div>
-    				<div class="carousel-item">
-      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
-						  <span>출발시간 : ${board.departureTime}</span>
-						  <span>도착시간 : ${board.arrivalTime}</span>
-						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
-    				</div>
-    				<div class="carousel-item">
-      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
-						  <span>출발시간 : ${board.departureTime}</span>
-						  <span>도착시간 : ${board.arrivalTime}</span>
-						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
-    				</div>
-    				<div class="carousel-item">
-      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
-						  <span>출발시간 : ${board.departureTime}</span>
-						  <span>도착시간 : ${board.arrivalTime}</span>
-						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
-    				</div>
-    				<div class="carousel-item">
-      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
-						  <span>출발시간 : ${board.departureTime}</span>
-						  <span>도착시간 : ${board.arrivalTime}</span>
-						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
-    				</div>
-				</div> 
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="visually-hidden">Previous</span>
-					  </button>
-					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="visually-hidden">Next</span>
-					  </button>
-			</div>
-		</div>
-
-                  
+                        <div class="col-md-2">
+                           <input type="button" class="btn btn-dark border-0 w-100 py-3" value="Search" onClick="LocationMatching()">
+                        </div>
                      </ol>
                   </nav>
                </div>
@@ -323,7 +221,6 @@ const swiper = new Swiper('.swiper', {
             interval: 2000 //기본 5초
           })
         </script>
-
         
         
       <div class="container-xxl py-6 bg-white">
@@ -394,16 +291,13 @@ const swiper = new Swiper('.swiper', {
                   <c:forEach var="board" items="${boardList}" varStatus="status">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                    
-                        <div class="service-item rounded h-100" onClick="register('<c:url value='/reservation/view/init'>
+                        <div class="service-item rounded h-100" onClick="register('<c:url value='/reservation/view/init' >
 						      <c:param name='boardId' value='${board.boardId}'/>
 						   </c:url>')">
                             <div class="d-flex justify-content-between">
                                 <div class="service-icon">
                                     <i class="fa fa-user-tie fa-2x"></i>
                                 </div>
-                                <a class="service-btn" href="<c:url value='/driver/register/board/form' />">
-                                    <i class="fa fa-link fa-2x"></i>
-                                </a>
                             </div>
                             <div class="p-5">
                                 <h5 class="mb-3">${board.departure } -> ${board.arrival } </h5>
