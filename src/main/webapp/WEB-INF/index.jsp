@@ -53,9 +53,15 @@ const swiper = new Swiper('.swiper', {
    });
    
 function register(targetUri){   
+<<<<<<< HEAD
    alert(targetUri);
      window.location.href = targetUri;
    }
+=======
+	alert(targetUri);
+	  window.location.href = targetUri;
+	}
+>>>>>>> 5537c0820582bf944029bd48cdf0f0b57af8b7a6
 </script>
 <meta charset="utf-8">
 
@@ -147,8 +153,12 @@ function register(targetUri){
                      </div>
                   </div>
                  <a href="<c:url value='/driver/myBoards'>
+
                         <c:param name='driverId' value='10'/>
                      </c:url>" class="nav-item nav-link">내 차량</a>
+
+						      <c:param name='driverId' value='10'/>
+						   </c:url>" class="nav-item nav-link">내 차량</a>
                     </div>
                     <a href=" <c:url value='/customer/login/form'/>" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">로그인</a>
                 
@@ -292,8 +302,13 @@ function register(targetUri){
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                    
                         <div class="service-item rounded h-100" onClick="register('<c:url value='/reservation/view/init' >
+<<<<<<< HEAD
                         <c:param name='boardId' value='${board.boardId}'/>
                      </c:url>')">
+=======
+						      <c:param name='boardId' value='${board.boardId}'/>
+						   </c:url>')">
+>>>>>>> 5537c0820582bf944029bd48cdf0f0b57af8b7a6
                             <div class="d-flex justify-content-between">
                                 <div class="service-icon">
                                     <i class="fa fa-user-tie fa-2x"></i>
