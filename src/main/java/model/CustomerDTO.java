@@ -13,6 +13,7 @@ public class CustomerDTO {
 	private int job; //1 학생 2 직장인
 	private String phone;
 	private String password;
+	private String info;
 	private List<ReservationDTO> customerReservationInfo;
 	
 	
@@ -26,7 +27,7 @@ public class CustomerDTO {
 	}
 	
 	//password포함 생성자 - 보여주면 안되는 나의 정보
-	public CustomerDTO(int id, String name, int gender, int age, int job, String phone, String password) {
+	public CustomerDTO(int id, String name, int gender, int age, int job, String phone, String password, String info) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -35,10 +36,11 @@ public class CustomerDTO {
 		this.job = job;
 		this.phone = phone;
 		this.password = password;
+		this.info = info;
 	}
 	
 	//password제외한 생성자 - 보여줘도 되는 나의 정보
-	public CustomerDTO(String strId, String name, int gender, int age, int job, String phone) {
+	public CustomerDTO(String strId, String name, int gender, int age, int job, String phone, String info) {
 		super();
 		this.strId = strId;
 		this.name = name;
@@ -46,6 +48,7 @@ public class CustomerDTO {
 		this.age = age;
 		this.job = job;
 		this.phone = phone;
+		this.info = info;
 	}
 	
 	
@@ -53,6 +56,18 @@ public class CustomerDTO {
 		// TODO Auto-generated constructor stub
 		super();
 	}
+
+	public CustomerDTO(String strId, String name, int gender, int age, int job, String phone, String password, String info) {
+		super();
+		this.strId = strId;
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+		this.job = job;
+		this.phone = phone;
+		this.password = password;
+		this.info = info;
+		}
 
 	public String getPassword() {
 		return password;
@@ -70,7 +85,7 @@ public class CustomerDTO {
 	public String getStrId() {
 		return strId;
 	}
-	public void setstrId(String strId) {
+	public void setStrId(String strId) {
 		this.strId = strId;
 	}
 	public String getName() {
@@ -94,8 +109,8 @@ public class CustomerDTO {
 	public int getJob() {
 		return job;
 	}
-	public void setJob(int job) {
-		this.job = job;
+	public void setJob(int string) {
+		this.job = string;
 	}
 	public String getPhone() {
 		return phone;
@@ -108,6 +123,14 @@ public class CustomerDTO {
 	}
 	public void setCustomerReservationInfo(List<ReservationDTO> customerReservationInfo) {
 		this.customerReservationInfo = customerReservationInfo;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
 	@Override
@@ -126,7 +149,7 @@ public class CustomerDTO {
 		}
 		
 		public boolean isSameUser(String strId) {
-	        return this.id.equals(strId);
+	        return this.strId.equals(strId);
 	    }
 	
 }

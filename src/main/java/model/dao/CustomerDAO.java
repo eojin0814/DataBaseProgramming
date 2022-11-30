@@ -18,8 +18,8 @@ private JDBCUtil jdbcUtil = null;
     * @return 
     */
    public int create(CustomerDTO cus) throws SQLException {
-      String sql = "INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?, ?)";      
-      Object[] param = new Object[] {cus.getId(),cus.getName(),cus.getGender(),cus.getAge(),cus.getJob(),cus.getPhone(),cus.getPassword()};            
+      String sql = "INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";      
+      Object[] param = new Object[] {cus.getId(),cus.getName(),cus.getGender(),cus.getAge(),cus.getJob(),cus.getPhone(),cus.getPassword(), cus.getInfo()};            
       jdbcUtil.setSqlAndParameters(sql, param);   // JDBCUtil 에 insert문과 매개 변수 설정
       try {    
          jdbcUtil.executeUpdate(); // insert 문 실행
@@ -45,12 +45,14 @@ private JDBCUtil jdbcUtil = null;
          ResultSet rs = jdbcUtil.executeQuery();      // query 실행
          if (rs.next()) {                  // 학생 정보 발견
             CustomerDTO cus = new CustomerDTO(      // User 객체를 생성하여 학생 정보를 저장
-               rs.getString("id"),
+               rs.getString("strId"),
                rs.getString("name"),
                rs.getInt("gender"),
                rs.getInt("age"),
                rs.getInt("job"),
-               rs.getString("password")               
+               rs.getString("phone"),
+               rs.getString("password"),
+               rs.getString("info")
                );
             return cus;
          }

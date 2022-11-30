@@ -50,12 +50,12 @@ public class CustomerManager {
    }
    //로그인 시 패스워드 검사
    public boolean login(String userId, String password)
-         throws SQLException, UserNotFoundException, PasswordMismatchException {
-         CustomerDTO cus = findUser(userId);
+			throws SQLException, UserNotFoundException, PasswordMismatchException {
+			CustomerDTO cus = findUser(userId);
 
-         if (!cus.matchPassword(password)) {
-            throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
-         }
-         return true;
-      }
+			if (!cus.matchPassword(password)) {
+				throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
+			}
+			return true;
+		}
 }

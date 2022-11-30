@@ -103,7 +103,7 @@ span {
     left: 450px;
 } 
        </style>
-    </head>
+</head>
     <body>
         <div class="wrap">
             <div class="form-wrap">
@@ -112,23 +112,24 @@ span {
                     <button type="button" class="togglebtn" onclick="login()">LOG IN</button>
                     <button type="button" class="togglebtn" onclick="register()">REGISTER</button>
                 </div>
-                
-                <form method="post" action="<c:url value='/customer/login' />" id="login" class="input-group">
-                    <input type="text" class="input-field" name = "id" placeholder="Enter Id" required>
-                    <input type="password" class="input-field" name = "password" placeholder="Enter Password" required>
+                <form id="login" action="" class="input-group">
+                    <input type="text" class="input-field" placeholder="User name or Email" required>
+                    <input type="password" class="input-field" placeholder="Enter Password" required>
                     <button class="submit">Login</button>
                 </form>
-                <form method="post" action="<c:url value='/customer/register' />" id="register" class="input-group">
-                <a href="<c:url value='/driver/register/form' />" >운전자로 등록 </a>
-                    <input type="text" class="input-field" name = "id" placeholder="Enter Id" required>
-                    <input type="password" class="input-field" name = "password" placeholder="Enter Password" required>
-                    <input type="name" class="input-field" name = "name" placeholder="Enter Name" required>
-                    <input type="job" class="input-field" name = "job" placeholder="Enter Job(1:student 2:worker)" required>
-                    <input type="age" class="input-field" name = "age" placeholder="Enter Age" required>
-					<label><input type="radio" class="checkbox" value="1">Man</label>
-      				<label><input type="radio" class="checkbox" value="2">Woman</label>                    
-      				<input type="phone" class="input-field" name = "phone" placeholder="Enter Phone-number" required>
-                    <TEXTAREA NAME = "MSG"  ROWS = "5"  COLS = "25" placeholder="Introduce yourself"></TEXTAREA>
+                <form id="register" action="" class="input-group">
+                    <input type="text" class="input-field" placeholder="Enter Id" required>
+                    <input type="password" class="input-field" placeholder="Enter Password" required>
+                    <input type="name" class="input-field" placeholder="Enter gender" required>
+                    <input type="job" class="input-field" placeholder="Enter job" required>
+                    <input type="age" class="input-field" placeholder="Enter age" required>
+                    <label><input type="checkbox" class="checkbox" value="M">Man</label>
+      				<label><input type="checkbox" class="checkbox" value="W">Woman</label>
+                    <input type="gender" class="input-field" placeholder="Enter gender" required>
+                    <input type="phone" class="input-field" placeholder="Enter phonenumber" required>
+                    <input type="carNumber" class="input-field" placeholder="Enter car number" required>
+                    <input type="license" class="input-field" placeholder="Enter license" required>
+                    
                     <button class="submit">REGISTER</button>
                 </form>
             </div>

@@ -1,5 +1,7 @@
 package controller.customer;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,33 +15,38 @@ import model.service.UserManager;
 public class RegisterCustomerController implements Controller{
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		/*
-		 * public CustomerDTO(int id, String name, int gender, int age, String job, String phone, String password) {
-		 */
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		
 		System.out.println("controller들어옴");
+		int num= (request.getParameter("gender")=="1") ? 1 : 2;
 	 	CustomerDTO customer = new CustomerDTO(
-				Integer.parseInt(request.getParameter("customerId")),
+				request.getParameter("id"),
 				request.getParameter("name"),
-				Integer.parseInt(request.getParameter("gender")),
+				num,
 				Integer.parseInt(request.getParameter("age")),
-				request.getParameter("job"),
+				Integer.parseInt(request.getParameter("job")),
 				request.getParameter("phone"),
-				request.getParameter("password"));
+				request.getParameter("password"),
+				request.getParameter("info"));
 			
 	       try {
+	    	   System.out.println(customer.toString());
 				CustomerManager customerMan = CustomerManager.getInstance();
-				customerMan.customerCreate(customer);
-				System.out.println("성공");
-		        return "/";	// 성공 시 사용자 리스트 화면으로 redirect
+				int i = customerMan.customerCreate(customer);
+				if(i == 1)
+					System.out.println("성공");
+		        return "redirect:/";	
 		        
 			} catch (ExistingUserException e) {	// 예외 발생 시 회원가입 form으로 forwarding
 //	            request.setAttribute("registerFailed", true);
 //				request.setAttribute("exception", e);
 //				request.setAttribute("user", user);
-				return "/customer/registerForm.jsp";
+				return "/customer/joinForm.jsp";
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+		return null;
 	}
 
 }

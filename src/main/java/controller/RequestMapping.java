@@ -30,10 +30,16 @@ public class RequestMapping {
     	
     	//board 클릭시 넘어가는 예약페이지
     	mappings.put("/reservation/view/init",  new SetReservationDetails());
-    	mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
+    	mappings.put("/customer/login/form", new ForwardController("/customer/joinForm.jsp"));
     	mappings.put("/customer/login", new CustomerLoginController());
-    	mappings.put("/customer/register/form",  new ForwardController("/customer/registerForm.jsp"));
+    	mappings.put("/customer/register/form",  new ForwardController("/customer/joinForm.jsp"));
     	mappings.put("/customer/register",  new RegisterCustomerController());
+    	
+    	mappings.put("/driver/login/form", new ForwardController("/driver/driverJoinForm.jsp"));
+	    mappings.put("/driver/login", new CustomerLoginController());
+	    mappings.put("/driver/register/form",  new ForwardController("/driver/driverJoinForm.jsp"));
+	    mappings.put("/driver/register",  new RegisterCustomerController());
+
     	
     	//board에 댓글 단거 처리하기
     	mappings.put("/board/comment", new SendBoardCommentController());
