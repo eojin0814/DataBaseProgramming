@@ -23,8 +23,8 @@ public class CustomerLoginController implements Controller{
       // TODO Auto-generated method stub
       String userId = request.getParameter("id");
       String password = request.getParameter("password");
-      System.out.println(userId);
-      System.out.println(password);
+//      System.out.println(userId);
+//      System.out.println(password);
       try {
          // 모델에 로그인 처리를 위임
          CustomerManager cmg = CustomerManager.getInstance();
@@ -39,7 +39,7 @@ public class CustomerLoginController implements Controller{
          /* UserNotFoundException이나 PasswordMismatchException 발생 시
           * 다시 login form을 사용자에게 전송하고 오류 메세지도 출력
           */
-            request.setAttribute("loginFailed", true);
+         request.setAttribute("loginFailed", true);
          request.setAttribute("exception", e);
             return "/customer/joinForm.jsp";         
       	}

@@ -28,7 +28,7 @@ public class CustomerManager {
    public int customerCreate(CustomerDTO customer) throws SQLException, ExistingUserException {
 //      if (userDAO.existingUser(user.getUserId()) == true) {
 //         throw new ExistingUserException(user.getUserId() + "는 존재하는 아이디입니다.");
-//      }
+//      }1이면 생성 성공
       return customerDAO.create(customer);
    }
    //사용자 정보 수정

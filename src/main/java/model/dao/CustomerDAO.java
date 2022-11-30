@@ -18,12 +18,12 @@ private JDBCUtil jdbcUtil = null;
     * @return 
     */
    public int create(CustomerDTO cus) throws SQLException {
-      String sql = "INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";      
-      Object[] param = new Object[] {cus.getId(),cus.getName(),cus.getGender(),cus.getAge(),cus.getJob(),cus.getPhone(),cus.getPassword(), cus.getInfo()};            
+      String sql = "INSERT INTO CUSTOMER VALUES (BOARDID_SEQUENCE.NEXTVAL, ?, ?, ?, ?, ?, ?, ? , ?) ";      
+      Object[] param = new Object[] {cus.getName(),cus.getGender(),cus.getAge(),cus.getJob(),cus.getPhone(),cus.getPassword(),cus.getStrId(), cus.getInfo()};            
       jdbcUtil.setSqlAndParameters(sql, param);   // JDBCUtil 에 insert문과 매개 변수 설정
       try {    
-         jdbcUtil.executeUpdate(); // insert 문 실행
-         return 1;
+         int result = jdbcUtil.executeUpdate(); // insert 문 실행
+         return result;
       } catch (Exception ex) {
          jdbcUtil.rollback();
          ex.printStackTrace();

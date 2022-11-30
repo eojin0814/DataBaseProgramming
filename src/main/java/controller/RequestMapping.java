@@ -20,45 +20,45 @@ public class RequestMapping {
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	
-    	
-    	//board
-    	//모든 board 테이블의 내용 가지고 오기
-    	mappings.put("/driver", new ListBoardController());
-//    	mappings.put("/driver/list", new ForwardController("/driver/boardList.jsp"));
-    	mappings.put("/driver/register/board/form", new ForwardController("/driver/registerBoard.jsp"));
-    	mappings.put("/driver/register/board", new CreateBoardController());
-    	mappings.put("/driver/myBoards", new ShowBoardsController());
-    	mappings.put("/board/update", new UpdateBoardController());
-    	//board 클릭시 넘어가는 예약페이지
-    	mappings.put("/reservation/view/init",  new SetReservationDetails());
+       
+       
+       //board
+       //모든 board 테이블의 내용 가지고 오기
+       mappings.put("/driver", new ListBoardController());
+//       mappings.put("/driver/list", new ForwardController("/driver/boardList.jsp"));
+       mappings.put("/driver/register/board/form", new ForwardController("/driver/registerBoard.jsp"));
+       mappings.put("/driver/register/board", new CreateBoardController());
+       mappings.put("/driver/myBoards", new ShowBoardsController());
+       mappings.put("/board/update", new UpdateBoardController());
+       //board 클릭시 넘어가는 예약페이지
+       mappings.put("/reservation/view/init",  new SetReservationDetails());
 
-    	mappings.put("/customer/login/form", new ForwardController("/customer/joinForm.jsp"));
+       mappings.put("/customer/login/form", new ForwardController("/customer/joinForm.jsp"));
 
-    	
-    	mappings.put("/customer/login/form", new ForwardController("/customer/joinForm.jsp"));
+       
+       mappings.put("/customer/login/form", new ForwardController("/customer/loginForm.jsp"));
 
-    	mappings.put("/customer/login", new CustomerLoginController());
-    	mappings.put("/customer/register/form",  new ForwardController("/customer/joinForm.jsp"));
-    	mappings.put("/customer/register",  new RegisterCustomerController());
-    	
+       mappings.put("/customer/login", new CustomerLoginController());
+       mappings.put("/customer/register/form",  new ForwardController("/customer/joinForm.jsp"));
+       mappings.put("/customer/register",  new RegisterCustomerController());
+       
 
-    	mappings.put("/driver/login/form", new ForwardController("/driver/driverJoinForm.jsp"));
-	    mappings.put("/driver/login", new CustomerLoginController());
-	    mappings.put("/driver/register/form",  new ForwardController("/driver/driverJoinForm.jsp"));
-	    mappings.put("/driver/register",  new RegisterCustomerController());
+       mappings.put("/driver/login/form", new ForwardController("/driver/driverJoinForm.jsp"));
+       mappings.put("/driver/login", new CustomerLoginController());
+       mappings.put("/driver/register/form",  new ForwardController("/driver/driverJoinForm.jsp"));
+       mappings.put("/driver/register",  new RegisterCustomerController());
 
-    	//reservation
-    	mappings.put("/customer/reservation/Info", new ForwardController("/reservation/reservation.jsp"));
-    	//로케이션 포워드 
-    	mappings.put("/customer/locationMatching/Info", new ForwardController("/LocationMatching.jsp"));
-    	//로케이션 매칭 페이지 이동
-    	mappings.put("/customer/LocationMatching", new MatchingLocationController());
+       //reservation
+       mappings.put("/customer/reservation/Info", new ForwardController("/reservation/reservation.jsp"));
+       //로케이션 포워드 
+       mappings.put("/customer/locationMatching/Info", new ForwardController("/LocationMatching.jsp"));
+       //로케이션 매칭 페이지 이동
+       mappings.put("/customer/LocationMatching", new MatchingLocationController());
 
-    	//board에 댓글 단거 처리하기
-    	mappings.put("/board/comment", new SendBoardCommentController());
+       //board에 댓글 단거 처리하기
+       mappings.put("/board/comment", new SendBoardCommentController());
 
-    	// 각 uri에 대응되는 controller 객체를 생성 및 저장
+       // 각 uri에 대응되는 controller 객체를 생성 및 저장
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
@@ -89,8 +89,8 @@ public class RequestMapping {
         logger.info("Initialized Request Mapping!");
     }
 
-    public Controller findController(String uri) {	
-    	// 주어진 uri에 대응되는 controller 객체를 찾아 반환
+    public Controller findController(String uri) {   
+       // 주어진 uri에 대응되는 controller 객체를 찾아 반환
         return mappings.get(uri);
     }
 }

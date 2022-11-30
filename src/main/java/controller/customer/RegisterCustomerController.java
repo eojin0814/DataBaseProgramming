@@ -5,7 +5,11 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.Controller;
+import controller.matching.MatchingLocationController;
 import model.CustomerDTO;
 import model.User;
 import model.service.CustomerManager;
@@ -13,11 +17,10 @@ import model.service.ExistingUserException;
 import model.service.UserManager;
 
 public class RegisterCustomerController implements Controller{
-
+	 private static final Logger log = LoggerFactory.getLogger(RegisterCustomerController.class);
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		System.out.println("controller들어옴");
 		int num= (request.getParameter("gender")=="1") ? 1 : 2;
 	 	CustomerDTO customer = new CustomerDTO(
 				request.getParameter("id"),
@@ -28,14 +31,15 @@ public class RegisterCustomerController implements Controller{
 				request.getParameter("phone"),
 				request.getParameter("password"),
 				request.getParameter("info"));
+	 	log.debug(customer.toString());
 			
 	       try {
-	    	   System.out.println(customer.toString());
 				CustomerManager customerMan = CustomerManager.getInstance();
 				int i = customerMan.customerCreate(customer);
-				if(i == 1)
+				if(i == 1) {
 					System.out.println("성공");
-		        return "redirect:/";	
+		        	return "redirect:/";	
+		        }
 		        
 			} catch (ExistingUserException e) {	// 예외 발생 시 회원가입 form으로 forwarding
 //	            request.setAttribute("registerFailed", true);
@@ -46,7 +50,7 @@ public class RegisterCustomerController implements Controller{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		return null;
+		return "/customer/joinForm.jsp";//실패
 	}
 
 }
