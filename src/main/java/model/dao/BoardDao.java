@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import model.CustomerDTO;
+import model.DriverDTO;
 import model.Reservation;
 import model.ReservationDTO;
 import model.User;
@@ -58,15 +59,97 @@ public class BoardDao {
 //	
 	
 	//boardId통해서 boar정보와 driver정보 가지고 오기 - mybatis xml버전
-	public BoardDTO selectBoardDetailsByBoardID(int boardId) {
-		System.out.println("selectBoardDetailsByBoardID");
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			return (BoardDTO)sqlSession.selectOne(
-					namespace + ".selectBoardDetailsByBoardID", boardId);	
-		} finally {
-			sqlSession.close();
+//	public BoardDTO selectBoardDetailsByBoardID(int boardId) {
+//		System.out.println("selectBoardDetailsByBoardID");
+//		SqlSession sqlSession = sqlSessionFactory.openSession();
+//		try {
+//			return (BoardDTO)sqlSession.selectOne(
+//					namespace + ".selectBoardDetailsByBoardID", boardId);	
+//		} finally {
+//			sqlSession.close();
+//		}
+//	}
+	//드라이버 아이디로 등록한 보드들 리스트로 보여주기
+
+	public List<BoardDTO> showMyBoardsByDriverId(int driverId) {
+		System.out.println("showMyBoardsByDriverId - dao");
+		String sql = "select * from board where driverid=?";
+		Object[] param = new Object[] {driverId};				
+		for(Object o:param) {
+			System.out.println(o);
 		}
+		System.out.println(param);
+		jdbcUtil.setSqlAndParameters(sql, param);
+	
+		try {	
+			List<BoardDTO> list = new ArrayList<BoardDTO>();
+			ResultSet rs = jdbcUtil.executeQuery();	
+			
+			while(rs.next()) {
+				BoardDTO board = new BoardDTO(
+						rs.getInt("DRIVERID"),
+						rs.getInt("BOARDID"),
+						rs.getString("ARRIVAL"),
+						rs.getString("DEPARTURE"),
+						rs.getString("ARRIVALTIME"),
+						rs.getString("DEPARTURETIME"),
+						rs.getString("CARSHAREDATE"),
+						rs.getInt("HEADCOUNT"),
+						rs.getInt("CURRENTHEADCOUNT"),
+						rs.getInt("REALTIMESTATE")
+				);
+				
+				list.add(board);
+			}
+			System.out.println(list);
+			return list;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}
+		return null;	
+	}
+	
+	public BoardDTO selectBoardDetailsByBoardID(int boardId) {
+		System.out.println("selectBoardDetailsByBoardID - dao");
+		String sql = "SELECT b.BOARDID, b.DRIVERID, b.ARRIVAL, b.DEPARTURE, b.ARRIVALTIME, b.DEPARTURETIME, b.CARSHAREDATE, b.HEADCOUNT, d.DRIVERNAME, d.LICENSE, d.CARNUMBER FROM DRIVER d, BOARD b WHERE d.DRIVERID = b.DRIVERID AND b.BOARDID = ? ";		
+		Object[] param = new Object[] {boardId};				
+		for(Object o:param) {
+			System.out.println(o);
+		}
+		System.out.println(param);
+		jdbcUtil.setSqlAndParameters(sql, param);
+	
+		try {				
+			ResultSet rs = jdbcUtil.executeQuery();	
+			System.out.println(rs.next());
+			DriverDTO driver = new DriverDTO(
+					rs.getString("DRIVERNAME"),rs.getInt("LICENSE"),rs.getInt("CARNUMBER")
+					);
+			System.out.println(driver);
+			BoardDTO board = new BoardDTO(
+					rs.getInt("DRIVERID"),
+					rs.getString("ARRIVAL"),
+					rs.getString("DEPARTURE"),
+					rs.getString("ARRIVALTIME"),
+					rs.getString("DEPARTURETIME"),
+					rs.getString("CARSHAREDATE"),
+					rs.getInt("HEADCOUNT"),
+					driver
+					);
+			System.out.println(board);
+			return board;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}
+		return null;	
 	}
 	
 	public String findBoardByBoardId(int boardId) {
@@ -149,18 +232,17 @@ public class BoardDao {
 	//comment초기에 보드 아이디로 페이지 들어가면 보여줄 댓글 창
 	public List<CommentDTO> findCommentByBoardId(int boardId) throws SQLException {
 		System.out.println("dao.findcommentByBoardId 들어옴");
-		String sql = "select c.commentid, c.boardid, c.details, u.name from comm c, customer u where c.customerid = u.customerid and c.boardid = ?";	
+		String sql = "select c.commentid, c.boardid, c.details, u.name, u.customerid from comm c, customer u where c.customerid = u.customerid and c.boardid = ?";	
 		Object[] param = new Object[] {boardId};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
 			List<CommentDTO> commentList = new ArrayList<CommentDTO>();
 			ResultSet rs = jdbcUtil.executeQuery();	// insert 문 실행
-			
 			while(rs.next()) {
 				CommentDTO comment = new CommentDTO();
 				CustomerDTO customer = new CustomerDTO();
 				customer.setName(rs.getString("NAME"));
-				
+				customer.setId(rs.getInt("CUSTOMERID"));
 				comment.setCommentNo(rs.getInt("COMMENTID"));
 				comment.setBoardId(rs.getInt("BOARDID"));
 				comment.setDetails(rs.getString("DETAILS"));
@@ -178,6 +260,23 @@ public class BoardDao {
 		}
 	}
 	
+	//전송 버튼 눌렀을때 user id와 board id를 comment table에 넣어주기
+	public void insertComment(int customerId, int boardId, String details) throws Exception {
+		System.out.println("dao.insertComment 들어옴");
+		String sql = "insert into comm values (commentid_sequence.nextval, ?, ?, ?)";	
+		Object[] param = new Object[] {customerId,boardId,details};
+		jdbcUtil.setSqlAndParameters(sql, param);
+		try {				
+			int rs = jdbcUtil.executeUpdate();	// insert 문 실행
+			System.out.println(rs);		
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}
+	}
+	
+	
+
 //	//이거 comment부분 이야기 해봐야됨
 //	public void updateUserComment(String comment, int boardId) {
 //		String sql = "UPDATE BOARD "

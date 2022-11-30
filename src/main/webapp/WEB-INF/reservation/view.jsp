@@ -101,13 +101,12 @@ function sendComment(targetUri){
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li>보드 id : ${board.boardId }</li>
                                         <li>출발 시간 : ${board.departureTime }</li>
                                         <li>도착 시간 : ${board.arrivalTime }</li>
          
                                         <li>인원 수 : ${board.headCount }</li>
                                         <li><a href="#!">운전자 정보</a></li>
-                                        <li><a href="#!">${board.driver.driverName }</a></li>
+                                        <li>${board.getDriver().getDriverName() }</li>
                                     </ul>
                                     <div>
                                     <!-- Button trigger modal -->
