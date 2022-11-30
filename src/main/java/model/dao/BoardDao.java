@@ -34,14 +34,14 @@ public class BoardDao {
 	
 	public BoardDao() {
 		jdbcUtil = new JDBCUtil();
-		String resource = "mybatis-config.xml";
+		//String resource = "mybatis-config.xml";
 		InputStream inputStream;
-		try {
-			inputStream = Resources.getResourceAsStream(resource);
-		} catch (IOException e) {
-			throw new IllegalArgumentException(e);
-		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		//try {
+		//	inputStream = Resources.getResourceAsStream(resource);
+		//} catch (IOException e) {
+		//	throw new IllegalArgumentException(e);
+		//}
+		//sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 //	
 //	public List<BoardDTO> selectAll() {
