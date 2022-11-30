@@ -27,7 +27,7 @@ function LocationMatching() {
       return false;
    } 
    if (form.depature.value == "") {
-      alert("depature");
+      alert("depatrure");
       form.depature.focus();
       return false;
    }   
@@ -176,21 +176,20 @@ const swiper = new Swiper('.swiper', {
 
 
          <form name="form" method="POST" action="<c:url value='/customer/LocationMatching'/>">
-            <div class="container-xxl bg-primary page-header">
-               <div class="container text-center">
-                  <h1 class="text-white animated zoomIn mb-3">어디로 갈까 ?</h1>
-                  <nav aria-label="breadcrumb">
-                     <ol class="breadcrumb justify-content-center">
-                        <div class="col-md-6 col-lg-3">
-                           <input type="text" name="arrival" id="arrival" class="form-control border-0 py-3"
-                              placeholder="arrival">
-                        </div>
+				<div class="container-xxl bg-primary page-header">
+					<div class="container text-center">
+						<h1 class="text-white animated zoomIn mb-3">어디로 갈까 ?</h1>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb justify-content-center">
+								<div class="col-md-6 col-lg-3">
+									<input type="text" name="arrival" id="arrival" class="form-control border-0 py-3"
+										placeholder="arrival">
+								</div>
 
-                        <div class="col-md-6 col-lg-3">
-                           <input type="text" name="depature" id="depature" class="form-control border-0 py-3"
-                              placeholder="depature">
-                        </div>
-
+								<div class="col-md-6 col-lg-3">
+									<input type="text" name="departure" id="departure" class="form-control border-0 py-3"
+										placeholder="depature">
+								</div>
 
 								<div class="col-md-2">
 									<input type="button" class="btn btn-dark border-0 w-100 py-3" value="Search" onClick="LocationMatching()">

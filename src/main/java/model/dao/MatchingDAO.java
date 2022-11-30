@@ -33,14 +33,14 @@ public class MatchingDAO {
 	public MatchingDAO() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 		
-		String resource = "mybatis-config.xml";
-		InputStream inputStream;
-		try {
-			inputStream = Resources.getResourceAsStream(resource);
-		} catch (IOException e) {
-			throw new IllegalArgumentException(e);
-		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		//String resource = "mybatis-config.xml";
+		//InputStream inputStream;
+		//try {
+		//	inputStream = Resources.getResourceAsStream(resource);
+		//} catch (IOException e) {
+		//	throw new IllegalArgumentException(e);
+		//}
+		//sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
 		
