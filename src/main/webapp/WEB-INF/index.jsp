@@ -34,6 +34,28 @@ function LocationMatching() {
    form.submit();
 }
 const swiper = new Swiper('.swiper', {
+
+	  // Optional parameters
+	  direction: 'vertical',
+	  loop: true,
+
+	  // If we need pagination
+	  pagination: {
+	    el: '.swiper-pagination',
+	  },
+
+	  // Navigation arrows
+	  navigation: {
+	    nextEl: '.swiper-button-next',
+	    prevEl: '.swiper-button-prev',
+	  },
+
+	  // And if we need scrollbar
+	  scrollbar: {
+	    el: '.swiper-scrollbar',
+	  },
+	});
+
      // Optional parameters
      direction: 'vertical',
      loop: true,
@@ -54,6 +76,7 @@ const swiper = new Swiper('.swiper', {
        el: '.swiper-scrollbar',
      },
    });
+
 </script>
 <meta charset="utf-8">
 
@@ -168,6 +191,113 @@ const swiper = new Swiper('.swiper', {
                               placeholder="depature">
                         </div>
 
+
+								<div class="col-md-2">
+									<input type="button" class="btn btn-dark border-0 w-100 py-3" value="Search" onClick="LocationMatching()">
+								</div>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		
+		<div class="swiper">
+		  <!-- Additional required wrapper -->
+		  <div class="swiper-wrapper">
+		    <!-- Slides -->
+		    <div class="swiper-slide">Slide 1</div>
+		    <div class="swiper-slide">Slide 2</div>
+		    <div class="swiper-slide">Slide 3</div>
+		    ...
+		  </div>
+		  <!-- If we need pagination -->
+		  <div class="swiper-pagination"></div>
+		
+		  <!-- If we need navigation buttons -->
+		  <div class="swiper-button-prev"></div>
+		  <div class="swiper-button-next"></div>
+		
+		  <!-- If we need scrollbar -->
+		  <div class="swiper-scrollbar"></div>
+		</div>
+		
+		
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+		  <script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+		  <script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+		  <script>
+		    $('.carousel').carousel({
+		      interval: 2000 //기본 5초
+		    })
+		  </script>
+		  
+		  
+		<div class="container-xxl py-6 bg-white">
+			<div class="container bg-white">
+				<h2>타조 추천</h2>
+			</div>
+			
+			<div id='ex1' class="carousel slide" data-bs-ride="carousel" > 
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+					      <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+						  <span>출발시간 : ${board.departureTime}</span>
+						  <span>도착시간 : ${board.arrivalTime}</span>
+						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
+					</div>
+					<div class="carousel-item">
+      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+						  <span>출발시간 : ${board.departureTime}</span>
+						  <span>도착시간 : ${board.arrivalTime}</span>
+						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
+    				</div>
+    				<div class="carousel-item">
+      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+						  <span>출발시간 : ${board.departureTime}</span>
+						  <span>도착시간 : ${board.arrivalTime}</span>
+						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
+    				</div>
+    				<div class="carousel-item">
+      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+						  <span>출발시간 : ${board.departureTime}</span>
+						  <span>도착시간 : ${board.arrivalTime}</span>
+						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
+    				</div>
+    				<div class="carousel-item">
+      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+						  <span>출발시간 : ${board.departureTime}</span>
+						  <span>도착시간 : ${board.arrivalTime}</span>
+						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
+    				</div>
+    				<div class="carousel-item">
+      					  <h5 class="mb-3">${board.departure }-> ${board.arrival}</h5>
+						  <span>출발시간 : ${board.departureTime}</span>
+						  <span>도착시간 : ${board.arrivalTime}</span>
+						  <span>탐승 가능 인원 수 : ${board.headCount }</span>
+    				</div>
+				</div> 
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Next</span>
+					  </button>
+			</div>
+		</div>
+
                         <div class="col-md-2">
                            <input type="button" class="btn btn-dark border-0 w-100 py-3" value="Search" onClick="LocationMatching()">
                         </div>
@@ -217,6 +347,7 @@ const swiper = new Swiper('.swiper', {
             interval: 2000 //기본 5초
           })
         </script>
+
         
         
       <div class="container-xxl py-6 bg-white">
